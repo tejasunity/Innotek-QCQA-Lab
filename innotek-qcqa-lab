@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="QCQA Lab">
+<meta name="mobile-web-app-capable" content="yes">
+<title>Innotek QCQA Lab</title>
+<style>
+:root {
+  --bg: #0f1117;
+  --surface: #1a1d27;
+  --surface2: #22263a;
+  --border: #2e3350;
+  --accent: #4f8ef7;
+  --accent2: #38c9a0;
+  --danger: #f76b6b;
+  --warn: #f7a84f;
+  --text: #e8eaf2;
+  --text2: #8b90a8;
+  --text3: #5a5f7a;
+  --radius: 14px;
+  --radius-sm: 8px;
+  --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  max-width: 480px;
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+.screen { display: none; min-height: 100vh; flex-direction: column; }
+.screen.active { display: flex; }
+
+/* HEADER */
+.app-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 16px 12px;
+  display: flex; align-items: center; gap: 12px;
+  position: sticky; top: 0; z-index: 100;
+}
+.back-btn {
+  width: 36px; height: 36px;
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 50%; color: var(--text); font-size: 20px;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.header-title { font-size: 17px; font-weight: 600; }
+.header-sub { font-size: 12px; color: var(--text2); margin-top: 1px; }
+
+/* SCROLL BODY */
+.screen-body {
+  flex: 1; overflow-y: auto;
+  padding: 16px 14px 120px;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* HOME */
+.home-logo { padding: 40px 20px 28px; text-align: center; }
+.logo-badge {
+  width: 72px; height: 72px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  border-radius: 20px; margin: 0 auto 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 30px;
+  box-shadow: 0 8px 32px rgba(79,142,247,0.25);
+}
+.home-title { font-size: 22px; font-weight: 700; letter-spacing: -0.3px; }
+.home-sub { font-size: 13px; color: var(--text2); margin-top: 4px; }
+.home-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 14px 40px; }
+.home-btn {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 24px 12px 18px;
+  text-align: center; cursor: pointer; transition: all 0.15s;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+}
+.home-btn:active { transform: scale(0.96); background: var(--surface2); }
+.home-btn-icon { font-size: 28px; }
+.home-btn-label { font-size: 15px; font-weight: 600; }
+.home-btn-desc { font-size: 11px; color: var(--text2); line-height: 1.4; }
+.home-btn.accent { border-color: rgba(79,142,247,0.4); }
+.home-btn.accent .home-btn-label { color: var(--accent); }
+.home-btn.green { border-color: rgba(56,201,160,0.4); }
+.home-btn.green .home-btn-label { color: var(--accent2); }
+
+/* CHOICE */
+.choice-wrap { padding: 24px 14px; display: flex; flex-direction: column; gap: 14px; }
+.choice-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 22px 18px;
+  cursor: pointer; display: flex; align-items: center; gap: 16px;
+  transition: all 0.15s;
+}
+.choice-card:active { background: var(--surface2); transform: scale(0.98); }
+.choice-icon {
+  width: 48px; height: 48px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; flex-shrink: 0;
+}
+.choice-icon.blue { background: rgba(79,142,247,0.15); }
+.choice-icon.green { background: rgba(56,201,160,0.15); }
+.choice-title { font-size: 16px; font-weight: 600; }
+.choice-desc { font-size: 12px; color: var(--text2); margin-top: 3px; }
+
+/* FORM */
+.form-section {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); margin-bottom: 12px; overflow: hidden;
+}
+.form-section-title {
+  font-size: 11px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--text2);
+  padding: 12px 14px 9px; border-bottom: 1px solid var(--border);
+}
+.form-row { padding: 12px 14px; border-bottom: 1px solid var(--border); }
+.form-row:last-child { border-bottom: none; }
+.form-label { font-size: 12px; color: var(--text2); margin-bottom: 7px; font-weight: 500; }
+.form-input {
+  width: 100%; background: var(--bg); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); color: var(--text);
+  font-size: 15px; padding: 11px 13px; font-family: var(--font);
+  outline: none; appearance: none; -webkit-appearance: none;
+}
+.form-input:focus { border-color: var(--accent); }
+.form-input.error { border-color: var(--danger); }
+.form-select {
+  width: 100%; background: var(--bg); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); color: var(--text);
+  font-size: 15px; padding: 11px 36px 11px 13px; font-family: var(--font);
+  outline: none; appearance: none; -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238b90a8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 13px center;
+}
+.form-select:focus { border-color: var(--accent); }
+.form-select option { background: #1a1d27; }
+.input-suffix-wrap { position: relative; display: flex; align-items: center; }
+.input-suffix-wrap .form-input { padding-right: 46px; }
+.input-suffix {
+  position: absolute; right: 13px;
+  font-size: 12px; font-weight: 700; color: var(--accent2); pointer-events: none;
+}
+.form-textarea {
+  width: 100%; background: var(--bg); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); color: var(--text);
+  font-size: 14px; padding: 11px 13px; font-family: var(--font);
+  outline: none; resize: none; line-height: 1.5; min-height: 85px;
+}
+.form-textarea:focus { border-color: var(--accent); }
+.form-textarea::placeholder { color: var(--text3); font-style: italic; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+
+/* NFG ROWS */
+.nfg-row {
+  display: grid; grid-template-columns: 1fr 1fr 72px;
+  gap: 8px; padding: 11px 14px; border-bottom: 1px solid var(--border);
+  align-items: end;
+}
+.nfg-row:last-child { border-bottom: none; }
+.nfg-cell-label { font-size: 11px; color: var(--text2); margin-bottom: 5px; }
+.display-cell {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 10px 8px;
+  font-size: 12px; color: var(--accent2); text-align: center; font-weight: 600;
+  min-height: 40px; display: flex; align-items: center; justify-content: center;
+}
+
+/* CB PILLS */
+.cb-scroll-row {
+  display: flex; gap: 10px; padding: 13px 14px;
+  overflow-x: auto; scrollbar-width: none;
+}
+.cb-scroll-row::-webkit-scrollbar { display: none; }
+.cb-pill {
+  flex-shrink: 0; padding: 9px 22px; border-radius: 50px;
+  border: 1.5px solid var(--border); font-size: 14px; font-weight: 600;
+  cursor: pointer; background: var(--bg); color: var(--text2); transition: all 0.15s;
+}
+.cb-pill.selected { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+/* BOTTOM BAR */
+.bottom-bar {
+  position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 100%; max-width: 480px; padding: 10px 14px;
+  background: linear-gradient(to top, var(--bg) 75%, transparent);
+  display: flex; gap: 10px; z-index: 200;
+}
+.btn-primary {
+  flex: 1; background: var(--accent); color: #fff; border: none;
+  border-radius: var(--radius-sm); padding: 14px;
+  font-size: 15px; font-weight: 600; cursor: pointer; font-family: var(--font);
+  transition: opacity 0.15s;
+}
+.btn-primary:active { opacity: 0.8; }
+.btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+.btn-save {
+  background: var(--surface2); color: var(--accent2);
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  padding: 14px 16px; font-size: 14px; font-weight: 600;
+  cursor: pointer; font-family: var(--font); white-space: nowrap;
+}
+.btn-save:active { opacity: 0.7; }
+
+/* PROCESS SCREEN */
+.info-bar {
+  background: var(--surface2); border-bottom: 1px solid var(--border);
+  padding: 10px 14px; display: flex; gap: 14px; flex-wrap: wrap;
+}
+.info-chip { font-size: 12px; color: var(--text2); }
+.info-chip span { color: var(--accent); font-weight: 600; }
+.process-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 12px; padding: 18px 14px 100px;
+}
+.process-btn {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 22px 12px 16px;
+  text-align: center; cursor: pointer; transition: all 0.15s;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+}
+.process-btn:active { transform: scale(0.96); background: var(--surface2); }
+.process-btn-icon { font-size: 26px; }
+.process-btn-label { font-size: 14px; font-weight: 600; }
+
+/* DISPATCH HEADER */
+.dispatch-header-bar {
+  background: var(--surface2); border-bottom: 1px solid var(--border);
+  padding: 10px 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 5px 12px;
+}
+.dh-chip { font-size: 12px; color: var(--text2); }
+.dh-chip span { color: var(--accent2); font-weight: 600; }
+
+/* SAMPLE BLOCKS */
+.sample-block {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); margin-bottom: 12px; overflow: hidden;
+}
+.sample-title-bar {
+  background: var(--surface2); padding: 10px 14px;
+  font-size: 13px; font-weight: 700; letter-spacing: 0.4px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 8px;
+}
+.sample-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.exp-row { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 6px; }
+.calc-label { font-size: 10px; color: var(--text3); margin-bottom: 5px; }
+.calc-result {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 9px 6px;
+  font-size: 12px; color: var(--accent2); font-weight: 700; text-align: center;
+  min-height: 40px; display: flex; align-items: center; justify-content: center;
+}
+.vm-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 7px; }
+.mesh-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+.result-row {
+  display: flex; align-items: center; gap: 10px; margin-top: 8px;
+}
+.result-label { font-size: 11px; color: var(--text2); white-space: nowrap; }
+.datetime-row { display: flex; gap: 8px; }
+.datetime-row .form-input { flex: 1; }
+
+/* SUBMIT */
+.submit-btn {
+  width: 100%;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff; border: none; border-radius: var(--radius-sm);
+  padding: 16px; font-size: 16px; font-weight: 700;
+  cursor: pointer; font-family: var(--font); margin-top: 8px;
+}
+.submit-btn:active { opacity: 0.8; }
+
+/* TOAST */
+.toast {
+  position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%);
+  background: var(--surface2); border: 1px solid var(--border);
+  color: var(--text); padding: 12px 22px; border-radius: 50px;
+  font-size: 14px; font-weight: 500; z-index: 999;
+  opacity: 0; transition: opacity 0.3s; pointer-events: none; white-space: nowrap;
+}
+.toast.show { opacity: 1; }
+.toast.success { border-color: var(--accent2); color: var(--accent2); }
+.toast.error { border-color: var(--danger); color: var(--danger); }
+
+/* LOADING OVERLAY */
+.overlay {
+  position: fixed; inset: 0; background: rgba(15,17,23,0.85);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 500; display: none;
+}
+.overlay.show { display: flex; }
+.spinner {
+  width: 40px; height: 40px; border: 3px solid var(--border);
+  border-top-color: var(--accent); border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* COMING SOON */
+.coming-soon { text-align: center; padding: 60px 20px; color: var(--text2); font-size: 15px; }
+.coming-soon .icon { font-size: 48px; margin-bottom: 12px; }
+</style>
+</head>
+<body>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+<!-- LOADING -->
+<div class="overlay" id="overlay"><div class="spinner"></div></div>
+
+<!-- ══════════════════════════════════
+     HOME
+══════════════════════════════════ -->
+<div class="screen active" id="screen-home">
+  <div class="home-logo">
+    <div class="logo-badge">⚗️</div>
+    <div class="home-title">Innotek QCQA Lab</div>
+    <div class="home-sub">Quality Control & Quality Assurance</div>
+  </div>
+  <div class="home-grid">
+    <div class="home-btn accent" onclick="goto('screen-batch-choice')">
+      <div class="home-btn-icon">🧪</div>
+      <div class="home-btn-label">Batch</div>
+      <div class="home-btn-desc">Create or open a batch record</div>
+    </div>
+    <div class="home-btn" onclick="goto('screen-nfg')">
+      <div class="home-btn-icon">📦</div>
+      <div class="home-btn-label">NFG</div>
+      <div class="home-btn-desc">Non-conforming goods log</div>
+    </div>
+    <div class="home-btn green" onclick="goto('screen-dispatch-choice')">
+      <div class="home-btn-icon">🚚</div>
+      <div class="home-btn-label">Dispatch</div>
+      <div class="home-btn-desc">Dispatch & sample testing</div>
+    </div>
+    <div class="home-btn" onclick="goto('screen-report')">
+      <div class="home-btn-icon">📊</div>
+      <div class="home-btn-label">Report</div>
+      <div class="home-btn-desc">View generated reports</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     BATCH CHOICE
+══════════════════════════════════ -->
+<div class="screen" id="screen-batch-choice">
+  <div class="app-header">
+    <button class="back-btn" onclick="goto('screen-home')">‹</button>
+    <div><div class="header-title">Batch</div><div class="header-sub">Select an option</div></div>
+  </div>
+  <div class="choice-wrap">
+    <div class="choice-card" onclick="goto('screen-batch-new')">
+      <div class="choice-icon blue">➕</div>
+      <div>
+        <div class="choice-title">New Batch</div>
+        <div class="choice-desc">Enter initial data and start a new batch record</div>
+      </div>
+    </div>
+    <div class="choice-card" onclick="goto('screen-batch-process')">
+      <div class="choice-icon green">📂</div>
+      <div>
+        <div class="choice-title">Open Existing</div>
+        <div class="choice-desc">Resume or review a previously created batch</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     NEW BATCH — Basic Data Entry
+══════════════════════════════════ -->
+<div class="screen" id="screen-batch-new">
+  <div class="app-header">
+    <button class="back-btn" onclick="goto('screen-batch-choice')">‹</button>
+    <div><div class="header-title">New Batch</div><div class="header-sub">Basic data entry</div></div>
+  </div>
+  <div class="screen-body">
+
+    <div class="form-section">
+      <div class="form-section-title">Date</div>
+      <div class="form-row">
+        <input type="date" class="form-input" id="batch-date">
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">Batch Number</div>
+      <div class="form-row">
+        <input type="text" class="form-input" id="batch-number" placeholder="Enter batch number">
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">Product Code</div>
+      <div class="form-row">
+        <select class="form-select" id="batch-product">
+          <option value="">Select product code</option>
+          <option>9950280</option><option>9980200</option><option>9980180</option>
+          <option>9650280</option><option>9680200</option><option>9080230</option>
+          <option>9080180</option><option>8550280</option><option>85200150</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">NFG</div>
+      <div class="form-row">
+        <div class="form-label">NFG Code</div>
+        <input type="text" class="form-input" id="batch-nfg-code" placeholder="Enter NFG code">
+      </div>
+      <div class="nfg-row">
+        <div>
+          <div class="nfg-cell-label">GRN + Bag No. 1</div>
+          <input type="text" class="form-input" id="batch-grn1" placeholder="e.g. GRN-1001 / B01" style="font-size:13px">
+        </div>
+        <div>
+          <div class="nfg-cell-label">Weight 1</div>
+          <div class="input-suffix-wrap">
+            <input type="number" class="form-input" id="batch-wt1" placeholder="0.00" style="font-size:13px">
+            <span class="input-suffix">kg</span>
+          </div>
+        </div>
+        <div>
+          <div class="nfg-cell-label">&nbsp;</div>
+          <div class="display-cell" id="batch-wt1-disp">—</div>
+        </div>
+      </div>
+      <div class="nfg-row">
+        <div>
+          <div class="nfg-cell-label">GRN + Bag No. 2</div>
+          <input type="text" class="form-input" id="batch-grn2" placeholder="e.g. GRN-1001 / B02" style="font-size:13px">
+        </div>
+        <div>
+          <div class="nfg-cell-label">Weight 2</div>
+          <div class="input-suffix-wrap">
+            <input type="number" class="form-input" id="batch-wt2" placeholder="0.00" style="font-size:13px">
+            <span class="input-suffix">kg</span>
+          </div>
+        </div>
+        <div>
+          <div class="nfg-cell-label">&nbsp;</div>
+          <div class="display-cell" id="batch-wt2-disp">—</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">L1</div>
+      <div class="form-row">
+        <div class="two-col">
+          <div>
+            <div class="form-label">Concentration</div>
+            <input type="number" class="form-input" id="batch-conc" placeholder="0.00" step="0.01">
+          </div>
+          <div>
+            <div class="form-label">Density</div>
+            <input type="number" class="form-input" id="batch-density" placeholder="0.000" step="0.001">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">Observations</div>
+      <div class="form-row">
+        <textarea class="form-textarea" id="batch-obs" placeholder="Enter any observations specific to this batch…"></textarea>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">Select CB</div>
+      <div class="cb-scroll-row" id="cb-select-row">
+        <div class="cb-pill selected" onclick="selectCB(this)">CB1</div>
+        <div class="cb-pill" onclick="selectCB(this)">CB2</div>
+        <div class="cb-pill" onclick="selectCB(this)">CB3</div>
+        <div class="cb-pill" onclick="selectCB(this)">CB4</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="bottom-bar">
+    <button class="btn-primary" onclick="submitBatch()">Save & Continue →</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     BATCH PROCESS — 6 buttons
+══════════════════════════════════ -->
+<div class="screen" id="screen-batch-process">
+  <div class="app-header">
+    <button class="back-btn" onclick="goto('screen-batch-choice')">‹</button>
+    <div><div class="header-title">Batch Process</div><div class="header-sub">Select a stage</div></div>
+  </div>
+  <div class="info-bar" id="batch-info-bar">
+    <div class="info-chip">Batch: <span id="bi-batch">—</span></div>
+    <div class="info-chip">Product: <span id="bi-product">—</span></div>
+    <div class="info-chip">CB: <span id="bi-cb">—</span></div>
+    <div class="info-chip">Date: <span id="bi-date">—</span></div>
+  </div>
+  <div class="process-grid">
+    <div class="process-btn" onclick="goto('screen-cb')">
+      <div class="process-btn-icon">🔬</div>
+      <div class="process-btn-label">CB</div>
+    </div>
+    <div class="process-btn" onclick="openStage('Decant')">
+      <div class="process-btn-icon">🧴</div>
+      <div class="process-btn-label">Decant</div>
+    </div>
+    <div class="process-btn" onclick="openStage('Tank Wash')">
+      <div class="process-btn-icon">🚿</div>
+      <div class="process-btn-label">Tank Wash</div>
+    </div>
+    <div class="process-btn" onclick="openStage('RDS')">
+      <div class="process-btn-icon">⚗️</div>
+      <div class="process-btn-label">RDS</div>
+    </div>
+    <div class="process-btn" onclick="openStage('Centrifuge')">
+      <div class="process-btn-icon">🌀</div>
+      <div class="process-btn-label">Centrifuge</div>
+    </div>
+    <div class="process-btn" onclick="openStage('Drying')">
+      <div class="process-btn-icon">🌡️</div>
+      <div class="process-btn-label">Drying</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     CB FORM
+══════════════════════════════════ -->
+<div class="screen" id="screen-cb">
+  <div class="app-header">
+    <button class="back-btn" onclick="goto('screen-batch-process')">‹</button>
+    <div><div class="header-title">CB Stage</div><div class="header-sub">Temperature & observations</div></div>
+  </div>
+  <div class="screen-body">
+
+    <div class="form-section">
+      <div class="form-section-title">Temperature Readings</div>
+      <div class="form-row">
+        <div class="two-col">
+          <div>
+            <div class="form-label">Start Temp</div>
+            <div class="input-suffix-wrap">
+              <input type="number" class="form-input" id="cb-start" placeholder="000" max="999">
+              <span class="input-suffix">°C</span>
+            </div>
+          </div>
+          <div>
+            <div class="form-label">End Temp</div>
+            <div class="input-suffix-wrap">
+              <input type="number" class="form-input" id="cb-end" placeholder="000" max="999">
+              <span class="input-suffix">°C</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-label">Before Unload Temp</div>
+        <div class="input-suffix-wrap">
+          <input type="number" class="form-input" id="cb-unload" placeholder="000" max="999">
+          <span class="input-suffix">°C</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">Observations</div>
+      <div class="form-row">
+        <textarea class="form-textarea" id="cb-obs" rows="4"
+          placeholder="No. of trips / halts, during addition / during soak etc."></textarea>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">Expansion at CB Stage</div>
+      <div class="form-row">
+        <div class="input-suffix-wrap">
+          <input type="number" class="form-input" id="cb-expansion" placeholder="000" max="999">
+          <span class="input-suffix">CC</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="bottom-bar">
+    <button class="btn-save" onclick="saveStageProgress()">Save</button>
+    <button class="btn-primary" onclick="submitCB()">Submit ✓</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     NFG
+══════════════════════════════════ -->
+<div class="screen" id="screen-nfg">
+  <div class="app-header">
+    <button class="back-btn" onclick="goto('screen-home')">‹</button>
+    <div><div class="header-title">NFG</div><div class="header-sub">Non-conforming goods</div></div>
+  </div>
+  <div class="screen-body">
+
+    <div class="form-section">
+      <div class="form-section-title">NFG Entry</div>
+      <div class="form-row">
+        <div class="form-label">Date</div>
+        <input type="date" class="form-input" id="nfg-date">
+      </div>
+      <div class="form-row">
+        <div class="form-label">NFG Code</div>
+        <input type="text" class="form-input" id="nfg-code" placeholder="Enter NFG code">
+      </div>
+      <div class="form-row">
+        <div class="form-label">GRN Number</div>
+        <input type="text" class="form-input" id="nfg-grn" placeholder="Enter GRN number">
+      </div>
+      <div class="form-row">
+        <div class="form-label">Bag Number</div>
+        <input type="text" class="form-input" id="nfg-bag" placeholder="Enter bag number">
+      </div>
+      <div class="form-row">
+        <div class="form-label">Weight</div>
+        <div class="input-suffix-wrap">
+          <input type="number" class="form-input" id="nfg-weight" placeholder="0.00" step="0.01">
+          <span class="input-suffix">kg</span>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-label">Notes</div>
+        <textarea class="form-textarea" id="nfg-notes" placeholder="Enter any notes…"></textarea>
+      </div>
+    </div>
+
+  </div>
+  <div class="bottom-bar">
+    <button class="btn-save" onclick="saveStageProgress()">Save</button>
+    <button class="btn-primary" onclick="submitNFG()">Submit ✓</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     DISPATCH CHOICE
+══════════════════════════════════ -->
+<div class="screen" id="screen-dispatch-choice">
+  <div class="app-header">
+    <button class="back-btn" onclick="goto('screen-home')">‹</button>
+    <div><div class="header-title">Dispatch</div><div class="header-sub">Select an option</div></div>
+  </div>
+  <div class="choice-wrap">
+    <div class="choice-card" onclick="goto('screen-dispatch-new')">
+      <div class="choice-icon blue">➕</div>
+      <div>
+        <div class="choice-title">Create New</div>
+        <div class="choice-desc">Start a new dispatch record with lot details</div>
+      </div>
+    </div>
+    <div class="choice-card" onclick="goto('screen-dispatch-form')">
+      <div class="choice-icon green">📂</div>
+      <div>
+        <div class="choice-title">Open Existing</div>
+        <div class="choice-desc">Resume or review a previous dispatch</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     DISPATCH — New Basic Data
+══════════════════════════════════ -->
+<div class="screen" id="screen-dispatch-new">
+  <div class="app-header">
+    <button class="back-btn" onclick="goto('screen-dispatch-choice')">‹</button>
+    <div><div class="header-title">New Dispatch</div><div class="header-sub">Basic information</div></div>
+  </div>
+  <div class="screen-body">
+
+    <div class="form-section">
+      <div class="form-section-title">Material Lot No</div>
+      <div class="form-row">
+        <input type="text" class="form-input" id="disp-lot" placeholder="Enter material lot number">
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">Product Code</div>
+      <div class="form-row">
+        <select class="form-select" id="disp-product">
+          <option value="">Select product code</option>
+          <option>9950280</option><option>9980200</option><option>9980180</option>
+          <option>9650280</option><option>9680200</option><option>9080230</option>
+          <option>9080180</option><option>8550280</option><option>85200150</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">Estimated Total Weight</div>
+      <div class="form-row">
+        <div class="input-suffix-wrap">
+          <input type="number" class="form-input" id="disp-weight" placeholder="00000" max="99999">
+          <span class="input-suffix">Kg</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">No. of Blends Est.</div>
+      <div class="form-row">
+        <input type="number" class="form-input" id="disp-blends" placeholder="Enter number" min="1" max="20">
+      </div>
+    </div>
+
+  </div>
+  <div class="bottom-bar">
+    <button class="btn-primary" onclick="startDispatchForm()">Continue →</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     DISPATCH FORM — Samples
+══════════════════════════════════ -->
+<div class="screen" id="screen-dispatch-form">
+  <div class="app-header">
+    <button class="back-btn" onclick="goto('screen-dispatch-new')">‹</button>
+    <div><div class="header-title">Dispatch Samples</div><div class="header-sub">QC testing data</div></div>
+  </div>
+  <div class="dispatch-header-bar">
+    <div class="dh-chip">Lot No: <span id="dh-lot">—</span></div>
+    <div class="dh-chip">Product: <span id="dh-product">—</span></div>
+    <div class="dh-chip">Est. Weight: <span id="dh-weight">—</span></div>
+    <div class="dh-chip">Blends: <span id="dh-blends">—</span></div>
+  </div>
+  <div class="screen-body" id="dispatch-samples-body"></div>
+  <div class="bottom-bar">
+    <button class="btn-save" onclick="saveStageProgress()">Save Progress</button>
+    <button class="btn-primary" onclick="submitDispatch()">Submit All ✓</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     REPORT
+══════════════════════════════════ -->
+<div class="screen" id="screen-report">
+  <div class="app-header">
+    <button class="back-btn" onclick="goto('screen-home')">‹</button>
+    <div><div class="header-title">Reports</div><div class="header-sub">Generated reports</div></div>
+  </div>
+  <div class="coming-soon">
+    <div class="icon">📊</div>
+    Reports module — coming soon
+  </div>
+</div>
+
+<script>
+// ════════════════════════════════════
+// CONFIG — your Google Apps Script URL goes here
+// ════════════════════════════════════
+const SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+
+// ════════════════════════════════════
+// STATE
+// ════════════════════════════════════
+let currentBatch = {};
+let currentDispatch = {};
+let selectedCB = 'CB1';
+
+// ════════════════════════════════════
+// NAVIGATION
+// ════════════════════════════════════
+function goto(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+// ════════════════════════════════════
+// TOAST
+// ════════════════════════════════════
+function showToast(msg, type = '') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show ' + type;
+  setTimeout(() => { t.className = 'toast'; }, 3000);
+}
+
+// ════════════════════════════════════
+// LOADING
+// ════════════════════════════════════
+function showLoading(v) {
+  document.getElementById('overlay').classList.toggle('show', v);
+}
+
+// ════════════════════════════════════
+// INIT
+// ════════════════════════════════════
+window.addEventListener('DOMContentLoaded', () => {
+  const today = new Date().toISOString().split('T')[0];
+  ['batch-date', 'nfg-date'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = today;
+  });
+  // mirror weight inputs to display cells
+  document.getElementById('batch-wt1').addEventListener('input', function() {
+    document.getElementById('batch-wt1-disp').textContent = this.value ? this.value + ' kg' : '—';
+  });
+  document.getElementById('batch-wt2').addEventListener('input', function() {
+    document.getElementById('batch-wt2-disp').textContent = this.value ? this.value + ' kg' : '—';
+  });
+});
+
+// ════════════════════════════════════
+// CB PILL
+// ════════════════════════════════════
+function selectCB(el) {
+  document.querySelectorAll('.cb-pill').forEach(p => p.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedCB = el.textContent;
+}
+
+// ════════════════════════════════════
+// STAGE PLACEHOLDER
+// ════════════════════════════════════
+function openStage(name) {
+  showToast(name + ' — coming soon');
+}
+
+function saveStageProgress() {
+  showToast('Progress saved locally', 'success');
+}
+
+// ════════════════════════════════════
+// SEND TO GOOGLE SHEETS
+// ════════════════════════════════════
+async function sendToSheet(payload) {
+  const resp = await fetch(SCRIPT_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
+  const json = await resp.json();
+  if (json.status !== 'success') throw new Error(json.message || 'Unknown error');
+  return json;
+}
+
+// ════════════════════════════════════
+// SUBMIT BATCH
+// ════════════════════════════════════
+function submitBatch() {
+  const batchNum = document.getElementById('batch-number').value.trim();
+  const product  = document.getElementById('batch-product').value;
+  const date     = document.getElementById('batch-date').value;
+
+  if (!batchNum) { highlight('batch-number'); showToast('Enter a batch number', 'error'); return; }
+  if (!product)  { highlight('batch-product'); showToast('Select a product code', 'error'); return; }
+  if (!date)     { highlight('batch-date'); showToast('Select a date', 'error'); return; }
+
+  currentBatch = {
+    batchNumber: batchNum,
+    date,
+    product,
+    nfgCode:  document.getElementById('batch-nfg-code').value.trim(),
+    grn1:     document.getElementById('batch-grn1').value.trim(),
+    weight1:  document.getElementById('batch-wt1').value,
+    grn2:     document.getElementById('batch-grn2').value.trim(),
+    weight2:  document.getElementById('batch-wt2').value,
+    l1Conc:   document.getElementById('batch-conc').value,
+    l1Density:document.getElementById('batch-density').value,
+    obs:      document.getElementById('batch-obs').value.trim(),
+    cb:       selectedCB
+  };
+
+  document.getElementById('bi-batch').textContent   = batchNum;
+  document.getElementById('bi-product').textContent = product;
+  document.getElementById('bi-cb').textContent      = selectedCB;
+  document.getElementById('bi-date').textContent    = date;
+
+  showLoading(true);
+  sendToSheet({ sheet: 'BATCHES', action: 'append', data: currentBatch })
+    .then(() => {
+      showLoading(false);
+      showToast('Batch saved ✓', 'success');
+      goto('screen-batch-process');
+    })
+    .catch(err => {
+      showLoading(false);
+      showToast('Save failed: ' + err.message, 'error');
+    });
+}
+
+// ════════════════════════════════════
+// SUBMIT CB
+// ════════════════════════════════════
+function submitCB() {
+  const data = {
+    batchNumber: currentBatch.batchNumber || '—',
+    stage:       'CB',
+    startTemp:   document.getElementById('cb-start').value,
+    endTemp:     document.getElementById('cb-end').value,
+    unloadTemp:  document.getElementById('cb-unload').value,
+    obs:         document.getElementById('cb-obs').value.trim(),
+    expansion:   document.getElementById('cb-expansion').value
+  };
+
+  showLoading(true);
+  sendToSheet({ sheet: 'BATCH_PROCESS', action: 'append', data })
+    .then(() => {
+      showLoading(false);
+      showToast('CB data saved ✓', 'success');
+      goto('screen-batch-process');
+    })
+    .catch(err => {
+      showLoading(false);
+      showToast('Save failed: ' + err.message, 'error');
+    });
+}
+
+// ════════════════════════════════════
+// SUBMIT NFG
+// ════════════════════════════════════
+function submitNFG() {
+  const code = document.getElementById('nfg-code').value.trim();
+  if (!code) { highlight('nfg-code'); showToast('Enter NFG code', 'error'); return; }
+
+  const data = {
+    date:   document.getElementById('nfg-date').value,
+    code,
+    grn:    document.getElementById('nfg-grn').value.trim(),
+    bag:    document.getElementById('nfg-bag').value.trim(),
+    weight: document.getElementById('nfg-weight').value,
+    notes:  document.getElementById('nfg-notes').value.trim()
+  };
+
+  showLoading(true);
+  sendToSheet({ sheet: 'NFG', action: 'append', data })
+    .then(() => {
+      showLoading(false);
+      showToast('NFG entry saved ✓', 'success');
+      goto('screen-home');
+    })
+    .catch(err => {
+      showLoading(false);
+      showToast('Save failed: ' + err.message, 'error');
+    });
+}
+
+// ════════════════════════════════════
+// DISPATCH — START FORM
+// ════════════════════════════════════
+function startDispatchForm() {
+  const lot     = document.getElementById('disp-lot').value.trim();
+  const product = document.getElementById('disp-product').value;
+  const blends  = parseInt(document.getElementById('disp-blends').value);
+
+  if (!lot)              { highlight('disp-lot');     showToast('Enter Material Lot No', 'error'); return; }
+  if (!product)          { highlight('disp-product'); showToast('Select a product code', 'error'); return; }
+  if (!blends || blends < 1) { highlight('disp-blends'); showToast('Enter no. of blends', 'error'); return; }
+
+  currentDispatch = {
+    lotNo:    lot,
+    product,
+    weight:   document.getElementById('disp-weight').value || '—',
+    blends
+  };
+
+  document.getElementById('dh-lot').textContent     = lot;
+  document.getElementById('dh-product').textContent = product;
+  document.getElementById('dh-weight').textContent  = currentDispatch.weight + (currentDispatch.weight !== '—' ? ' Kg' : '');
+  document.getElementById('dh-blends').textContent  = blends;
+
+  buildDispatchForm(blends);
+  goto('screen-dispatch-form');
+}
+
+// ════════════════════════════════════
+// BUILD DISPATCH SAMPLE BLOCKS
+// ════════════════════════════════════
+function buildDispatchForm(blends) {
+  const totalSets = (blends * 2) + 2;
+  const body = document.getElementById('dispatch-samples-body');
+  body.innerHTML = '';
+
+  const today    = new Date().toISOString().split('T')[0];
+  const timeNow  = new Date().toTimeString().slice(0, 5);
+
+  for (let i = 0; i < totalSets; i++) {
+    const sampleNum = Math.floor(i / 2) + 1;
+    const uid = 'ds' + i;
+    const block = document.createElement('div');
+    block.className = 'sample-block';
+    block.innerHTML = `
+      <div class="sample-title-bar"><div class="sample-dot"></div>Sample ${sampleNum}</div>
+
+      <div class="form-row">
+        <div class="form-label">Date & Time</div>
+        <div class="datetime-row">
+          <input type="date" class="form-input" id="${uid}-date" value="${today}" style="flex:1.3">
+          <input type="time" class="form-input" id="${uid}-time" value="${timeNow}" style="flex:1">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-label">Expansion</div>
+        <div class="exp-row">
+          <div>
+            <div class="calc-label">Test 1</div>
+            <div class="input-suffix-wrap">
+              <input type="number" class="form-input" id="${uid}-t1" placeholder="000" oninput="calcAvg('${uid}')">
+              <span class="input-suffix" style="font-size:10px">CC</span>
+            </div>
+          </div>
+          <div>
+            <div class="calc-label">Test 2</div>
+            <div class="input-suffix-wrap">
+              <input type="number" class="form-input" id="${uid}-t2" placeholder="000" oninput="calcAvg('${uid}')">
+              <span class="input-suffix" style="font-size:10px">CC</span>
+            </div>
+          </div>
+          <div>
+            <div class="calc-label">Test 3</div>
+            <div class="input-suffix-wrap">
+              <input type="number" class="form-input" id="${uid}-t3" placeholder="000" oninput="calcAvg('${uid}')">
+              <span class="input-suffix" style="font-size:10px">CC</span>
+            </div>
+          </div>
+          <div>
+            <div class="calc-label">Avg</div>
+            <div class="calc-result" id="${uid}-avg">—</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-label">pH</div>
+        <input type="number" class="form-input" id="${uid}-ph" placeholder="00.00" step="0.01" min="0" max="14">
+      </div>
+
+      <div class="form-row">
+        <div class="form-label">Bulk Density</div>
+        <input type="number" class="form-input" id="${uid}-bd" placeholder="0.000" step="0.001">
+      </div>
+
+      <div class="form-row">
+        <div class="form-label">Volatile Matter</div>
+        <div class="vm-grid">
+          <div><div class="calc-label">Empty Crucible Wt.</div>
+            <input type="number" class="form-input" id="${uid}-vm1" placeholder="0.00" oninput="calcVM('${uid}')"></div>
+          <div><div class="calc-label">Filled Crucible Wt.</div>
+            <input type="number" class="form-input" id="${uid}-vm2" placeholder="0.00" oninput="calcVM('${uid}')"></div>
+          <div><div class="calc-label">Final Wt.</div>
+            <input type="number" class="form-input" id="${uid}-vm3" placeholder="0.00" oninput="calcVM('${uid}')"></div>
+        </div>
+        <div class="result-row">
+          <div class="result-label">Volatile Matter %</div>
+          <div class="calc-result" id="${uid}-vmout" style="min-width:80px">—</div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-label">% Carbon</div>
+        <div class="vm-grid">
+          <div><div class="calc-label">Empty Crucible Wt.</div>
+            <input type="number" class="form-input" id="${uid}-c1" placeholder="0.00" oninput="calcCarbon('${uid}')"></div>
+          <div><div class="calc-label">Filled Crucible Wt.</div>
+            <input type="number" class="form-input" id="${uid}-c2" placeholder="0.00" oninput="calcCarbon('${uid}')"></div>
+          <div><div class="calc-label">Final Wt.</div>
+            <input type="number" class="form-input" id="${uid}-c3" placeholder="0.00" oninput="calcCarbon('${uid}')"></div>
+        </div>
+        <div class="result-row">
+          <div class="result-label">% Carbon</div>
+          <div class="calc-result" id="${uid}-cout" style="min-width:80px">—</div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-label">Mesh Analysis</div>
+        <div class="mesh-grid">
+          <div><div class="calc-label">+50</div>
+            <input type="number" class="form-input" id="${uid}-m50" placeholder="000.00" step="0.01"></div>
+          <div><div class="calc-label">+80</div>
+            <input type="number" class="form-input" id="${uid}-m80" placeholder="000.00" step="0.01"></div>
+          <div><div class="calc-label">+100</div>
+            <input type="number" class="form-input" id="${uid}-m100" placeholder="000.00" step="0.01"></div>
+          <div><div class="calc-label">+150</div>
+            <input type="number" class="form-input" id="${uid}-m150" placeholder="000.00" step="0.01"></div>
+          <div><div class="calc-label">+200</div>
+            <input type="number" class="form-input" id="${uid}-m200" placeholder="000.00" step="0.01"></div>
+        </div>
+      </div>
+    `;
+    body.appendChild(block);
+  }
+}
+
+// ════════════════════════════════════
+// SUBMIT DISPATCH
+// ════════════════════════════════════
+async function submitDispatch() {
+  const blends    = currentDispatch.blends || 1;
+  const totalSets = (blends * 2) + 2;
+  const samples   = [];
+
+  for (let i = 0; i < totalSets; i++) {
+    const uid = 'ds' + i;
+    const sampleNum = Math.floor(i / 2) + 1;
+    const g = id => { const el = document.getElementById(id); return el ? el.value : ''; };
+    samples.push({
+      lotNo:      currentDispatch.lotNo,
+      sampleLabel:'Sample ' + sampleNum,
+      date:       g(uid+'-date'),
+      time:       g(uid+'-time'),
+      expT1:      g(uid+'-t1'),
+      expT2:      g(uid+'-t2'),
+      expT3:      g(uid+'-t3'),
+      expAvg:     document.getElementById(uid+'-avg') ? document.getElementById(uid+'-avg').textContent : '—',
+      ph:         g(uid+'-ph'),
+      bulkDensity:g(uid+'-bd'),
+      vm1:        g(uid+'-vm1'),
+      vm2:        g(uid+'-vm2'),
+      vm3:        g(uid+'-vm3'),
+      vmPct:      document.getElementById(uid+'-vmout') ? document.getElementById(uid+'-vmout').textContent : '—',
+      c1:         g(uid+'-c1'),
+      c2:         g(uid+'-c2'),
+      c3:         g(uid+'-c3'),
+      cPct:       document.getElementById(uid+'-cout') ? document.getElementById(uid+'-cout').textContent : '—',
+      m50:        g(uid+'-m50'),
+      m80:        g(uid+'-m80'),
+      m100:       g(uid+'-m100'),
+      m150:       g(uid+'-m150'),
+      m200:       g(uid+'-m200')
+    });
+  }
+
+  showLoading(true);
+  try {
+    await sendToSheet({ sheet: 'DISPATCH', action: 'append', data: currentDispatch });
+    await sendToSheet({ sheet: 'DISPATCH_SAMPLES', action: 'appendBatch', data: samples });
+    showLoading(false);
+    showToast('Dispatch submitted ✓', 'success');
+    setTimeout(() => goto('screen-home'), 1500);
+  } catch(err) {
+    showLoading(false);
+    showToast('Submit failed: ' + err.message, 'error');
+  }
+}
+
+// ════════════════════════════════════
+// CALCULATIONS
+// ════════════════════════════════════
+function calcAvg(uid) {
+  const t1 = parseFloat(document.getElementById(uid+'-t1')?.value);
+  const t2 = parseFloat(document.getElementById(uid+'-t2')?.value);
+  const t3 = parseFloat(document.getElementById(uid+'-t3')?.value);
+  const el = document.getElementById(uid+'-avg');
+  if (!el) return;
+  const vals = [t1, t2, t3].filter(v => !isNaN(v) && v !== null);
+  el.textContent = vals.length ? (vals.reduce((a,b)=>a+b,0)/vals.length).toFixed(1)+' CC' : '—';
+}
+
+function calcVM(uid) {
+  const v2 = parseFloat(document.getElementById(uid+'-vm2')?.value);
+  const v3 = parseFloat(document.getElementById(uid+'-vm3')?.value);
+  const el = document.getElementById(uid+'-vmout');
+  if (!el) return;
+  el.textContent = (!isNaN(v2) && !isNaN(v3) && v2 !== 0)
+    ? ((1-(v3/v2))*100).toFixed(2)+'%' : '—';
+}
+
+function calcCarbon(uid) {
+  const c2 = parseFloat(document.getElementById(uid+'-c2')?.value);
+  const c3 = parseFloat(document.getElementById(uid+'-c3')?.value);
+  const el = document.getElementById(uid+'-cout');
+  if (!el) return;
+  el.textContent = (!isNaN(c2) && !isNaN(c3) && c2 !== 0)
+    ? ((1-(c3/c2))*100).toFixed(2)+'%' : '—';
+}
+
+// ════════════════════════════════════
+// HIGHLIGHT ERROR FIELD
+// ════════════════════════════════════
+function highlight(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.classList.add('error');
+  el.focus();
+  setTimeout(() => el.classList.remove('error'), 2500);
+}
+</script>
+</body>
+</html>
+ENDOFFILE
+echo "Done"
