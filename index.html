@@ -10,314 +10,170 @@
 <title>Innotek QCQA Lab</title>
 <style>
 :root {
-  --bg: #0f1117;
-  --surface: #1a1d27;
-  --surface2: #22263a;
-  --border: #2e3350;
-  --accent: #4f8ef7;
-  --accent2: #38c9a0;
-  --danger: #f76b6b;
-  --warn: #f7a84f;
-  --text: #e8eaf2;
-  --text2: #8b90a8;
-  --text3: #5a5f7a;
-  --radius: 14px;
-  --radius-sm: 8px;
-  --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --bg:#0f1117; --surface:#1a1d27; --surface2:#22263a; --border:#2e3350;
+  --accent:#4f8ef7; --accent2:#38c9a0; --danger:#f76b6b; --warn:#f7a84f;
+  --text:#e8eaf2; --text2:#8b90a8; --text3:#5a5f7a;
+  --radius:14px; --radius-sm:8px;
+  --font:'Segoe UI',system-ui,-apple-system,sans-serif;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-body {
-  font-family: var(--font);
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  max-width: 480px;
-  margin: 0 auto;
-  overflow-x: hidden;
-}
-.screen { display: none; min-height: 100vh; flex-direction: column; }
-.screen.active { display: flex; }
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;max-width:480px;margin:0 auto;overflow-x:hidden}
+.screen{display:none;min-height:100vh;flex-direction:column}
+.screen.active{display:flex}
 
 /* HEADER */
-.app-header {
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  padding: 14px 16px 12px;
-  display: flex; align-items: center; gap: 12px;
-  position: sticky; top: 0; z-index: 100;
-}
-.back-btn {
-  width: 36px; height: 36px;
-  background: var(--surface2); border: 1px solid var(--border);
-  border-radius: 50%; color: var(--text); font-size: 20px;
-  cursor: pointer; display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.header-title { font-size: 17px; font-weight: 600; }
-.header-sub { font-size: 12px; color: var(--text2); margin-top: 1px; }
+.app-header{background:var(--surface);border-bottom:1px solid var(--border);padding:14px 16px 12px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:100}
+.back-btn{width:36px;height:36px;background:var(--surface2);border:1px solid var(--border);border-radius:50%;color:var(--text);font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.header-title{font-size:17px;font-weight:600}
+.header-sub{font-size:12px;color:var(--text2);margin-top:1px}
 
-/* SCROLL BODY */
-.screen-body {
-  flex: 1; overflow-y: auto;
-  padding: 16px 14px 120px;
-  -webkit-overflow-scrolling: touch;
-}
+/* BODY */
+.screen-body{flex:1;overflow-y:auto;padding:14px 13px 130px;-webkit-overflow-scrolling:touch}
 
 /* HOME */
-.home-logo { padding: 40px 20px 28px; text-align: center; }
-.logo-badge {
-  width: 72px; height: 72px;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  border-radius: 20px; margin: 0 auto 14px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 30px;
-  box-shadow: 0 8px 32px rgba(79,142,247,0.25);
-}
-.home-title { font-size: 22px; font-weight: 700; letter-spacing: -0.3px; }
-.home-sub { font-size: 13px; color: var(--text2); margin-top: 4px; }
-.home-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 14px 40px; }
-.home-btn {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 24px 12px 18px;
-  text-align: center; cursor: pointer; transition: all 0.15s;
-  display: flex; flex-direction: column; align-items: center; gap: 8px;
-}
-.home-btn:active { transform: scale(0.96); background: var(--surface2); }
-.home-btn-icon { font-size: 28px; }
-.home-btn-label { font-size: 15px; font-weight: 600; }
-.home-btn-desc { font-size: 11px; color: var(--text2); line-height: 1.4; }
-.home-btn.accent { border-color: rgba(79,142,247,0.4); }
-.home-btn.accent .home-btn-label { color: var(--accent); }
-.home-btn.green { border-color: rgba(56,201,160,0.4); }
-.home-btn.green .home-btn-label { color: var(--accent2); }
+.home-logo{padding:36px 20px 24px;text-align:center}
+.logo-badge{width:70px;height:70px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:20px;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 8px 32px rgba(79,142,247,.25)}
+.home-title{font-size:22px;font-weight:700;letter-spacing:-.3px}
+.home-sub{font-size:13px;color:var(--text2);margin-top:4px}
+.home-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 13px 40px}
+.home-btn{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 12px 16px;text-align:center;cursor:pointer;transition:all .15s;display:flex;flex-direction:column;align-items:center;gap:8px}
+.home-btn:active{transform:scale(.96);background:var(--surface2)}
+.home-btn-icon{font-size:28px}
+.home-btn-label{font-size:15px;font-weight:600}
+.home-btn-desc{font-size:11px;color:var(--text2);line-height:1.4}
+.home-btn.accent{border-color:rgba(79,142,247,.4)}.home-btn.accent .home-btn-label{color:var(--accent)}
+.home-btn.green{border-color:rgba(56,201,160,.4)}.home-btn.green .home-btn-label{color:var(--accent2)}
+.home-btn.orange{border-color:rgba(247,168,79,.4)}.home-btn.orange .home-btn-label{color:var(--warn)}
 
 /* CHOICE */
-.choice-wrap { padding: 24px 14px; display: flex; flex-direction: column; gap: 14px; }
-.choice-card {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 22px 18px;
-  cursor: pointer; display: flex; align-items: center; gap: 16px;
-  transition: all 0.15s;
-}
-.choice-card:active { background: var(--surface2); transform: scale(0.98); }
-.choice-icon {
-  width: 48px; height: 48px; border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 22px; flex-shrink: 0;
-}
-.choice-icon.blue { background: rgba(79,142,247,0.15); }
-.choice-icon.green { background: rgba(56,201,160,0.15); }
-.choice-title { font-size: 16px; font-weight: 600; }
-.choice-desc { font-size: 12px; color: var(--text2); margin-top: 3px; }
+.choice-wrap{padding:20px 13px;display:flex;flex-direction:column;gap:12px}
+.choice-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 16px;cursor:pointer;display:flex;align-items:center;gap:14px;transition:all .15s}
+.choice-card:active{background:var(--surface2);transform:scale(.98)}
+.choice-icon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.choice-icon.blue{background:rgba(79,142,247,.15)}
+.choice-icon.green{background:rgba(56,201,160,.15)}
+.choice-icon.orange{background:rgba(247,168,79,.15)}
+.choice-title{font-size:16px;font-weight:600}
+.choice-desc{font-size:12px;color:var(--text2);margin-top:3px}
 
 /* FORM */
-.form-section {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius); margin-bottom: 12px; overflow: hidden;
-}
-.form-section-title {
-  font-size: 11px; font-weight: 700; letter-spacing: 1px;
-  text-transform: uppercase; color: var(--text2);
-  padding: 12px 14px 9px; border-bottom: 1px solid var(--border);
-}
-.form-row { padding: 12px 14px; border-bottom: 1px solid var(--border); }
-.form-row:last-child { border-bottom: none; }
-.form-label { font-size: 12px; color: var(--text2); margin-bottom: 7px; font-weight: 500; }
-.form-input {
-  width: 100%; background: var(--bg); border: 1px solid var(--border);
-  border-radius: var(--radius-sm); color: var(--text);
-  font-size: 15px; padding: 11px 13px; font-family: var(--font);
-  outline: none; appearance: none; -webkit-appearance: none;
-}
-.form-input:focus { border-color: var(--accent); }
-.form-input.error { border-color: var(--danger); }
-.form-select {
-  width: 100%; background: var(--bg); border: 1px solid var(--border);
-  border-radius: var(--radius-sm); color: var(--text);
-  font-size: 15px; padding: 11px 36px 11px 13px; font-family: var(--font);
-  outline: none; appearance: none; -webkit-appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238b90a8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-repeat: no-repeat; background-position: right 13px center;
-}
-.form-select:focus { border-color: var(--accent); }
-.form-select option { background: #1a1d27; }
-.input-suffix-wrap { position: relative; display: flex; align-items: center; }
-.input-suffix-wrap .form-input { padding-right: 46px; }
-.input-suffix {
-  position: absolute; right: 13px;
-  font-size: 12px; font-weight: 700; color: var(--accent2); pointer-events: none;
-}
-.form-textarea {
-  width: 100%; background: var(--bg); border: 1px solid var(--border);
-  border-radius: var(--radius-sm); color: var(--text);
-  font-size: 14px; padding: 11px 13px; font-family: var(--font);
-  outline: none; resize: none; line-height: 1.5; min-height: 85px;
-}
-.form-textarea:focus { border-color: var(--accent); }
-.form-textarea::placeholder { color: var(--text3); font-style: italic; }
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
-
-/* NFG ROWS */
-.nfg-row {
-  display: grid; grid-template-columns: 1fr 1fr 72px;
-  gap: 8px; padding: 11px 14px; border-bottom: 1px solid var(--border);
-  align-items: end;
-}
-.nfg-row:last-child { border-bottom: none; }
-.nfg-cell-label { font-size: 11px; color: var(--text2); margin-bottom: 5px; }
-.display-cell {
-  background: var(--surface2); border: 1px solid var(--border);
-  border-radius: var(--radius-sm); padding: 10px 8px;
-  font-size: 12px; color: var(--accent2); text-align: center; font-weight: 600;
-  min-height: 40px; display: flex; align-items: center; justify-content: center;
-}
+.form-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:12px;overflow:hidden}
+.form-section-title{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text2);padding:11px 13px 8px;border-bottom:1px solid var(--border)}
+.form-row{padding:11px 13px;border-bottom:1px solid var(--border)}
+.form-row:last-child{border-bottom:none}
+.form-label{font-size:12px;color:var(--text2);margin-bottom:6px;font-weight:500}
+.form-input{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:15px;padding:10px 12px;font-family:var(--font);outline:none;appearance:none;-webkit-appearance:none}
+.form-input:focus{border-color:var(--accent)}
+.form-input.error{border-color:var(--danger)}
+.form-input[readonly]{color:var(--accent2);background:var(--surface2)}
+.form-select{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:15px;padding:10px 34px 10px 12px;font-family:var(--font);outline:none;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238b90a8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
+.form-select:focus{border-color:var(--accent)}
+.form-select option{background:#1a1d27}
+.input-suffix-wrap{position:relative;display:flex;align-items:center}
+.input-suffix-wrap .form-input{padding-right:44px}
+.input-suffix{position:absolute;right:12px;font-size:12px;font-weight:700;color:var(--accent2);pointer-events:none}
+.form-textarea{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:14px;padding:10px 12px;font-family:var(--font);outline:none;resize:none;line-height:1.5;min-height:80px}
+.form-textarea:focus{border-color:var(--accent)}
+.form-textarea::placeholder{color:var(--text3);font-style:italic}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px}
+.display-cell{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 10px;font-size:13px;color:var(--accent2);text-align:center;font-weight:600;min-height:40px;display:flex;align-items:center;justify-content:center}
 
 /* CB PILLS */
-.cb-scroll-row {
-  display: flex; gap: 10px; padding: 13px 14px;
-  overflow-x: auto; scrollbar-width: none;
-}
-.cb-scroll-row::-webkit-scrollbar { display: none; }
-.cb-pill {
-  flex-shrink: 0; padding: 9px 22px; border-radius: 50px;
-  border: 1.5px solid var(--border); font-size: 14px; font-weight: 600;
-  cursor: pointer; background: var(--bg); color: var(--text2); transition: all 0.15s;
-}
-.cb-pill.selected { background: var(--accent); border-color: var(--accent); color: #fff; }
+.cb-scroll-row{display:flex;gap:9px;padding:12px 13px;overflow-x:auto;scrollbar-width:none}
+.cb-scroll-row::-webkit-scrollbar{display:none}
+.cb-pill{flex-shrink:0;padding:9px 20px;border-radius:50px;border:1.5px solid var(--border);font-size:14px;font-weight:600;cursor:pointer;background:var(--bg);color:var(--text2);transition:all .15s}
+.cb-pill.selected{background:var(--accent);border-color:var(--accent);color:#fff}
 
 /* BOTTOM BAR */
-.bottom-bar {
-  position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
-  width: 100%; max-width: 480px; padding: 10px 14px;
-  background: linear-gradient(to top, var(--bg) 75%, transparent);
-  display: flex; gap: 10px; z-index: 200;
-}
-.btn-primary {
-  flex: 1; background: var(--accent); color: #fff; border: none;
-  border-radius: var(--radius-sm); padding: 14px;
-  font-size: 15px; font-weight: 600; cursor: pointer; font-family: var(--font);
-  transition: opacity 0.15s;
-}
-.btn-primary:active { opacity: 0.8; }
-.btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
-.btn-save {
-  background: var(--surface2); color: var(--accent2);
-  border: 1px solid var(--border); border-radius: var(--radius-sm);
-  padding: 14px 16px; font-size: 14px; font-weight: 600;
-  cursor: pointer; font-family: var(--font); white-space: nowrap;
-}
-.btn-save:active { opacity: 0.7; }
+.bottom-bar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;padding:10px 13px;background:linear-gradient(to top,var(--bg) 75%,transparent);display:flex;gap:9px;z-index:200}
+.btn-primary{flex:1;background:var(--accent);color:#fff;border:none;border-radius:var(--radius-sm);padding:14px;font-size:15px;font-weight:600;cursor:pointer;font-family:var(--font);transition:opacity .15s}
+.btn-primary:active{opacity:.8}
+.btn-primary:disabled{opacity:.4;cursor:not-allowed}
+.btn-save{background:var(--surface2);color:var(--accent2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 15px;font-size:14px;font-weight:600;cursor:pointer;font-family:var(--font);white-space:nowrap}
+.btn-save:active{opacity:.7}
+.btn-danger{background:var(--surface2);color:var(--danger);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 15px;font-size:14px;font-weight:600;cursor:pointer;font-family:var(--font)}
 
-/* PROCESS SCREEN */
-.info-bar {
-  background: var(--surface2); border-bottom: 1px solid var(--border);
-  padding: 10px 14px; display: flex; gap: 14px; flex-wrap: wrap;
-}
-.info-chip { font-size: 12px; color: var(--text2); }
-.info-chip span { color: var(--accent); font-weight: 600; }
-.process-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 12px; padding: 18px 14px 100px;
-}
-.process-btn {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 22px 12px 16px;
-  text-align: center; cursor: pointer; transition: all 0.15s;
-  display: flex; flex-direction: column; align-items: center; gap: 8px;
-}
-.process-btn:active { transform: scale(0.96); background: var(--surface2); }
-.process-btn-icon { font-size: 26px; }
-.process-btn-label { font-size: 14px; font-weight: 600; }
+/* PROCESS */
+.info-bar{background:var(--surface2);border-bottom:1px solid var(--border);padding:10px 13px;display:flex;gap:12px;flex-wrap:wrap}
+.info-chip{font-size:12px;color:var(--text2)}
+.info-chip span{color:var(--accent);font-weight:600}
+.process-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;padding:16px 13px 100px}
+.process-btn{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 12px 15px;text-align:center;cursor:pointer;transition:all .15s;display:flex;flex-direction:column;align-items:center;gap:7px}
+.process-btn:active{transform:scale(.96);background:var(--surface2)}
+.process-btn-icon{font-size:26px}
+.process-btn-label{font-size:14px;font-weight:600}
+
+/* LIST SCREEN */
+.list-wrap{padding:14px 13px 100px}
+.list-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:10px;cursor:pointer;transition:all .15s}
+.list-item:active{background:var(--surface2);transform:scale(.99)}
+.list-item-title{font-size:15px;font-weight:600;margin-bottom:4px}
+.list-item-sub{font-size:12px;color:var(--text2)}
+.list-empty{text-align:center;padding:50px 20px;color:var(--text2);font-size:14px}
+.list-empty .icon{font-size:40px;margin-bottom:10px}
 
 /* DISPATCH HEADER */
-.dispatch-header-bar {
-  background: var(--surface2); border-bottom: 1px solid var(--border);
-  padding: 10px 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 5px 12px;
-}
-.dh-chip { font-size: 12px; color: var(--text2); }
-.dh-chip span { color: var(--accent2); font-weight: 600; }
+.dispatch-header-bar{background:var(--surface2);border-bottom:1px solid var(--border);padding:10px 13px;display:grid;grid-template-columns:1fr 1fr;gap:4px 12px}
+.dh-chip{font-size:12px;color:var(--text2)}
+.dh-chip span{color:var(--accent2);font-weight:600}
 
 /* SAMPLE BLOCKS */
-.sample-block {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius); margin-bottom: 12px; overflow: hidden;
-}
-.sample-title-bar {
-  background: var(--surface2); padding: 10px 14px;
-  font-size: 13px; font-weight: 700; letter-spacing: 0.4px;
-  border-bottom: 1px solid var(--border);
-  display: flex; align-items: center; gap: 8px;
-}
-.sample-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
-.exp-row { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 6px; }
-.calc-label { font-size: 10px; color: var(--text3); margin-bottom: 5px; }
-.calc-result {
-  background: var(--surface2); border: 1px solid var(--border);
-  border-radius: var(--radius-sm); padding: 9px 6px;
-  font-size: 12px; color: var(--accent2); font-weight: 700; text-align: center;
-  min-height: 40px; display: flex; align-items: center; justify-content: center;
-}
-.vm-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 7px; }
-.mesh-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
-.result-row {
-  display: flex; align-items: center; gap: 10px; margin-top: 8px;
-}
-.result-label { font-size: 11px; color: var(--text2); white-space: nowrap; }
-.datetime-row { display: flex; gap: 8px; }
-.datetime-row .form-input { flex: 1; }
+.sample-block{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:12px;overflow:hidden}
+.sample-title-bar{background:var(--surface2);padding:10px 13px;font-size:13px;font-weight:700;letter-spacing:.3px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.sample-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+
+/* COMPACT CALC */
+.exp-row{display:grid;grid-template-columns:1fr 1fr 1fr 80px;gap:6px}
+.calc-label{font-size:10px;color:var(--text3);margin-bottom:4px}
+.calc-result{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:9px 6px;font-size:12px;color:var(--accent2);font-weight:700;text-align:center;min-height:38px;display:flex;align-items:center;justify-content:center}
+.vm-row{display:grid;grid-template-columns:1fr 1fr 1fr 70px;gap:6px;align-items:end}
+.mesh-row{display:grid;grid-template-columns:repeat(5,1fr);gap:5px}
+.mesh-input{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:12px;padding:8px 5px;text-align:center;font-family:var(--font);outline:none;width:100%;appearance:none;-webkit-appearance:none}
+.mesh-input:focus{border-color:var(--accent)}
+.result-inline{display:flex;align-items:center;gap:8px;margin-top:6px}
+.result-label{font-size:11px;color:var(--text2);white-space:nowrap}
+.datetime-row{display:flex;gap:8px}
+.datetime-row .form-input{flex:1}
+
+/* NFG BAG ROWS */
+.bag-row{display:grid;grid-template-columns:80px 1fr;gap:8px;align-items:center;padding:8px 13px;border-bottom:1px solid var(--border)}
+.bag-row:last-child{border-bottom:none}
+.bag-label{font-size:13px;font-weight:600;color:var(--text2)}
 
 /* SUBMIT */
-.submit-btn {
-  width: 100%;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  color: #fff; border: none; border-radius: var(--radius-sm);
-  padding: 16px; font-size: 16px; font-weight: 700;
-  cursor: pointer; font-family: var(--font); margin-top: 8px;
-}
-.submit-btn:active { opacity: 0.8; }
+.submit-btn{width:100%;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;border-radius:var(--radius-sm);padding:15px;font-size:16px;font-weight:700;cursor:pointer;font-family:var(--font);margin-top:8px}
+.submit-btn:active{opacity:.8}
 
 /* TOAST */
-.toast {
-  position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%);
-  background: var(--surface2); border: 1px solid var(--border);
-  color: var(--text); padding: 12px 22px; border-radius: 50px;
-  font-size: 14px; font-weight: 500; z-index: 999;
-  opacity: 0; transition: opacity 0.3s; pointer-events: none; white-space: nowrap;
-}
-.toast.show { opacity: 1; }
-.toast.success { border-color: var(--accent2); color: var(--accent2); }
-.toast.error { border-color: var(--danger); color: var(--danger); }
+.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:11px 20px;border-radius:50px;font-size:14px;font-weight:500;z-index:999;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1}
+.toast.success{border-color:var(--accent2);color:var(--accent2)}
+.toast.error{border-color:var(--danger);color:var(--danger)}
 
-/* LOADING OVERLAY */
-.overlay {
-  position: fixed; inset: 0; background: rgba(15,17,23,0.85);
-  display: flex; align-items: center; justify-content: center;
-  z-index: 500; display: none;
-}
-.overlay.show { display: flex; }
-.spinner {
-  width: 40px; height: 40px; border: 3px solid var(--border);
-  border-top-color: var(--accent); border-radius: 50%;
-  animation: spin 0.7s linear infinite;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
+/* OVERLAY */
+.overlay{position:fixed;inset:0;background:rgba(15,17,23,.85);display:none;align-items:center;justify-content:center;z-index:500}
+.overlay.show{display:flex}
+.spinner{width:40px;height:40px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
 
 /* COMING SOON */
-.coming-soon { text-align: center; padding: 60px 20px; color: var(--text2); font-size: 15px; }
-.coming-soon .icon { font-size: 48px; margin-bottom: 12px; }
+.coming-soon{text-align:center;padding:60px 20px;color:var(--text2);font-size:15px}
+.coming-soon .icon{font-size:46px;margin-bottom:12px}
+
+/* AUTO-DISPLAY CHIP */
+.auto-chip{display:inline-block;background:rgba(56,201,160,.15);border:1px solid rgba(56,201,160,.3);border-radius:6px;padding:4px 10px;font-size:13px;font-weight:700;color:var(--accent2);margin-top:6px}
+
+/* SUPPLIER DISPLAY */
+.supplier-source{font-size:11px;color:var(--text3);margin-top:4px;padding-left:2px}
 </style>
 </head>
 <body>
 
-<!-- TOAST -->
 <div class="toast" id="toast"></div>
-<!-- LOADING -->
 <div class="overlay" id="overlay"><div class="spinner"></div></div>
 
-<!-- ══════════════════════════════════
-     HOME
-══════════════════════════════════ -->
+<!-- ══════════════ HOME ══════════════ -->
 <div class="screen active" id="screen-home">
   <div class="home-logo">
     <div class="logo-badge">⚗️</div>
@@ -330,10 +186,10 @@ body {
       <div class="home-btn-label">Batch</div>
       <div class="home-btn-desc">Create or open a batch record</div>
     </div>
-    <div class="home-btn" onclick="goto('screen-nfg')">
-      <div class="home-btn-icon">📦</div>
-      <div class="home-btn-label">NFG</div>
-      <div class="home-btn-desc">Non-conforming goods log</div>
+    <div class="home-btn orange" onclick="goto('screen-nfg-choice')">
+      <div class="home-btn-icon">🪨</div>
+      <div class="home-btn-label">NFG & L1</div>
+      <div class="home-btn-desc">Natural Flake Graphite & L1 GRN records</div>
     </div>
     <div class="home-btn green" onclick="goto('screen-dispatch-choice')">
       <div class="home-btn-icon">🚚</div>
@@ -348,9 +204,7 @@ body {
   </div>
 </div>
 
-<!-- ══════════════════════════════════
-     BATCH CHOICE
-══════════════════════════════════ -->
+<!-- ══════════════ BATCH CHOICE ══════════════ -->
 <div class="screen" id="screen-batch-choice">
   <div class="app-header">
     <button class="back-btn" onclick="goto('screen-home')">‹</button>
@@ -359,24 +213,25 @@ body {
   <div class="choice-wrap">
     <div class="choice-card" onclick="goto('screen-batch-new')">
       <div class="choice-icon blue">➕</div>
-      <div>
-        <div class="choice-title">New Batch</div>
-        <div class="choice-desc">Enter initial data and start a new batch record</div>
-      </div>
+      <div><div class="choice-title">New Batch</div><div class="choice-desc">Enter initial data and start a new batch record</div></div>
     </div>
-    <div class="choice-card" onclick="goto('screen-batch-process')">
+    <div class="choice-card" onclick="loadBatchList()">
       <div class="choice-icon green">📂</div>
-      <div>
-        <div class="choice-title">Open Existing</div>
-        <div class="choice-desc">Resume or review a previously created batch</div>
-      </div>
+      <div><div class="choice-title">Open Existing</div><div class="choice-desc">Resume or continue a previously created batch</div></div>
     </div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════
-     NEW BATCH — Basic Data Entry
-══════════════════════════════════ -->
+<!-- ══════════════ BATCH LIST ══════════════ -->
+<div class="screen" id="screen-batch-list">
+  <div class="app-header">
+    <button class="back-btn" onclick="goto('screen-batch-choice')">‹</button>
+    <div><div class="header-title">Select Batch</div><div class="header-sub">Tap to open</div></div>
+  </div>
+  <div class="list-wrap" id="batch-list-body"></div>
+</div>
+
+<!-- ══════════════ NEW BATCH ══════════════ -->
 <div class="screen" id="screen-batch-new">
   <div class="app-header">
     <button class="back-btn" onclick="goto('screen-batch-choice')">‹</button>
@@ -386,83 +241,89 @@ body {
 
     <div class="form-section">
       <div class="form-section-title">Date</div>
-      <div class="form-row">
-        <input type="date" class="form-input" id="batch-date">
-      </div>
+      <div class="form-row"><input type="date" class="form-input" id="batch-date"></div>
     </div>
 
     <div class="form-section">
       <div class="form-section-title">Batch Number</div>
-      <div class="form-row">
-        <input type="text" class="form-input" id="batch-number" placeholder="Enter batch number">
-      </div>
+      <div class="form-row"><input type="text" class="form-input" id="batch-number" placeholder="Enter batch number"></div>
     </div>
 
     <div class="form-section">
       <div class="form-section-title">Product Code</div>
       <div class="form-row">
-        <select class="form-select" id="batch-product">
+        <select class="form-select" id="batch-product" onchange="onProductChange()">
           <option value="">Select product code</option>
-          <option>9950280</option><option>9980200</option><option>9980180</option>
-          <option>9650280</option><option>9680200</option><option>9080230</option>
-          <option>9080180</option><option>8550280</option><option>85200150</option>
+          <option>85200150</option><option>9080230</option><option>8550280</option>
+          <option>9650280</option><option>9980200</option><option>9950280</option>
+          <option>9980180</option><option>9680200</option><option>9650300</option>
+          <option>9050300</option><option>9450300</option><option>9450120</option>
+          <option>9080180</option>
         </select>
       </div>
     </div>
 
     <div class="form-section">
-      <div class="form-section-title">NFG</div>
+      <div class="form-section-title">NFG — Natural Flake Graphite</div>
       <div class="form-row">
-        <div class="form-label">NFG Code</div>
-        <input type="text" class="form-input" id="batch-nfg-code" placeholder="Enter NFG code">
+        <div class="form-label">NFG Code (auto from product)</div>
+        <input type="text" class="form-input" id="batch-nfg-code" readonly placeholder="Select product code above">
       </div>
-      <div class="nfg-row">
-        <div>
-          <div class="nfg-cell-label">GRN + Bag No. 1</div>
-          <input type="text" class="form-input" id="batch-grn1" placeholder="e.g. GRN-1001 / B01" style="font-size:13px">
-        </div>
-        <div>
-          <div class="nfg-cell-label">Weight 1</div>
-          <div class="input-suffix-wrap">
-            <input type="number" class="form-input" id="batch-wt1" placeholder="0.00" style="font-size:13px">
-            <span class="input-suffix">kg</span>
-          </div>
-        </div>
-        <div>
-          <div class="nfg-cell-label">&nbsp;</div>
-          <div class="display-cell" id="batch-wt1-disp">—</div>
-        </div>
+      <!-- BAG ROW 1 -->
+      <div class="form-row">
+        <div class="form-label">Bag 1 — Select GRN</div>
+        <select class="form-select" id="batch-grn-select-1" onchange="onGRNChange(1)">
+          <option value="">Select GRN</option>
+        </select>
       </div>
-      <div class="nfg-row">
-        <div>
-          <div class="nfg-cell-label">GRN + Bag No. 2</div>
-          <input type="text" class="form-input" id="batch-grn2" placeholder="e.g. GRN-1001 / B02" style="font-size:13px">
-        </div>
-        <div>
-          <div class="nfg-cell-label">Weight 2</div>
-          <div class="input-suffix-wrap">
-            <input type="number" class="form-input" id="batch-wt2" placeholder="0.00" style="font-size:13px">
-            <span class="input-suffix">kg</span>
-          </div>
-        </div>
-        <div>
-          <div class="nfg-cell-label">&nbsp;</div>
-          <div class="display-cell" id="batch-wt2-disp">—</div>
-        </div>
+      <div class="form-row" id="batch-bag-row-1" style="display:none">
+        <div class="form-label">Bag 1 — Select Bag Number</div>
+        <select class="form-select" id="batch-bag-select-1" onchange="onBagChange(1)">
+          <option value="">Select bag</option>
+        </select>
+      </div>
+      <div class="form-row" id="batch-wt-row-1" style="display:none">
+        <div class="form-label">Bag 1 — Weight</div>
+        <input type="text" class="form-input" id="batch-wt-1" readonly>
+      </div>
+      <!-- BAG ROW 2 -->
+      <div class="form-row">
+        <div class="form-label">Bag 2 — Select GRN</div>
+        <select class="form-select" id="batch-grn-select-2" onchange="onGRNChange(2)">
+          <option value="">Select GRN</option>
+        </select>
+      </div>
+      <div class="form-row" id="batch-bag-row-2" style="display:none">
+        <div class="form-label">Bag 2 — Select Bag Number</div>
+        <select class="form-select" id="batch-bag-select-2" onchange="onBagChange(2)">
+          <option value="">Select bag</option>
+        </select>
+      </div>
+      <div class="form-row" id="batch-wt-row-2" style="display:none">
+        <div class="form-label">Bag 2 — Weight</div>
+        <input type="text" class="form-input" id="batch-wt-2" readonly>
       </div>
     </div>
 
     <div class="form-section">
-      <div class="form-section-title">L1</div>
+      <div class="form-section-title">L1 — Select GRN</div>
+      <div class="form-row">
+        <select class="form-select" id="batch-l1-grn" onchange="onL1GRNChange()">
+          <option value="">Select L1 GRN (latest first)</option>
+        </select>
+      </div>
       <div class="form-row">
         <div class="two-col">
           <div>
             <div class="form-label">Concentration</div>
-            <input type="number" class="form-input" id="batch-conc" placeholder="0.00" step="0.01">
+            <div class="input-suffix-wrap">
+              <input type="text" class="form-input" id="batch-l1-conc" readonly placeholder="Auto">
+              <span class="input-suffix">%</span>
+            </div>
           </div>
           <div>
             <div class="form-label">Density</div>
-            <input type="number" class="form-input" id="batch-density" placeholder="0.000" step="0.001">
+            <input type="text" class="form-input" id="batch-l1-density" readonly placeholder="Auto">
           </div>
         </div>
       </div>
@@ -470,9 +331,7 @@ body {
 
     <div class="form-section">
       <div class="form-section-title">Observations</div>
-      <div class="form-row">
-        <textarea class="form-textarea" id="batch-obs" placeholder="Enter any observations specific to this batch…"></textarea>
-      </div>
+      <div class="form-row"><textarea class="form-textarea" id="batch-obs" placeholder="Enter any batch-specific observations…"></textarea></div>
     </div>
 
     <div class="form-section">
@@ -491,163 +350,281 @@ body {
   </div>
 </div>
 
-<!-- ══════════════════════════════════
-     BATCH PROCESS — 6 buttons
-══════════════════════════════════ -->
+<!-- ══════════════ BATCH PROCESS ══════════════ -->
 <div class="screen" id="screen-batch-process">
   <div class="app-header">
     <button class="back-btn" onclick="goto('screen-batch-choice')">‹</button>
     <div><div class="header-title">Batch Process</div><div class="header-sub">Select a stage</div></div>
   </div>
-  <div class="info-bar" id="batch-info-bar">
+  <div class="info-bar">
     <div class="info-chip">Batch: <span id="bi-batch">—</span></div>
     <div class="info-chip">Product: <span id="bi-product">—</span></div>
     <div class="info-chip">CB: <span id="bi-cb">—</span></div>
     <div class="info-chip">Date: <span id="bi-date">—</span></div>
   </div>
   <div class="process-grid">
-    <div class="process-btn" onclick="goto('screen-cb')">
-      <div class="process-btn-icon">🔬</div>
-      <div class="process-btn-label">CB</div>
-    </div>
-    <div class="process-btn" onclick="openStage('Decant')">
-      <div class="process-btn-icon">🧴</div>
-      <div class="process-btn-label">Decant</div>
-    </div>
-    <div class="process-btn" onclick="openStage('Tank Wash')">
-      <div class="process-btn-icon">🚿</div>
-      <div class="process-btn-label">Tank Wash</div>
-    </div>
-    <div class="process-btn" onclick="openStage('RDS')">
-      <div class="process-btn-icon">⚗️</div>
-      <div class="process-btn-label">RDS</div>
-    </div>
-    <div class="process-btn" onclick="openStage('Centrifuge')">
-      <div class="process-btn-icon">🌀</div>
-      <div class="process-btn-label">Centrifuge</div>
-    </div>
-    <div class="process-btn" onclick="openStage('Drying')">
-      <div class="process-btn-icon">🌡️</div>
-      <div class="process-btn-label">Drying</div>
-    </div>
+    <div class="process-btn" onclick="goto('screen-cb')"><div class="process-btn-icon">🔬</div><div class="process-btn-label">CB</div></div>
+    <div class="process-btn" onclick="stageToast('Decant')"><div class="process-btn-icon">🧴</div><div class="process-btn-label">Decant</div></div>
+    <div class="process-btn" onclick="stageToast('Tank Wash')"><div class="process-btn-icon">🚿</div><div class="process-btn-label">Tank Wash</div></div>
+    <div class="process-btn" onclick="stageToast('RDS')"><div class="process-btn-icon">⚗️</div><div class="process-btn-label">RDS</div></div>
+    <div class="process-btn" onclick="stageToast('Centrifuge')"><div class="process-btn-icon">🌀</div><div class="process-btn-label">Centrifuge</div></div>
+    <div class="process-btn" onclick="stageToast('Drying')"><div class="process-btn-icon">🌡️</div><div class="process-btn-label">Drying</div></div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════
-     CB FORM
-══════════════════════════════════ -->
+<!-- ══════════════ CB FORM ══════════════ -->
 <div class="screen" id="screen-cb">
   <div class="app-header">
     <button class="back-btn" onclick="goto('screen-batch-process')">‹</button>
     <div><div class="header-title">CB Stage</div><div class="header-sub">Temperature & observations</div></div>
   </div>
   <div class="screen-body">
-
     <div class="form-section">
       <div class="form-section-title">Temperature Readings</div>
       <div class="form-row">
         <div class="two-col">
           <div>
             <div class="form-label">Start Temp</div>
-            <div class="input-suffix-wrap">
-              <input type="number" class="form-input" id="cb-start" placeholder="000" max="999">
-              <span class="input-suffix">°C</span>
-            </div>
+            <div class="input-suffix-wrap"><input type="number" class="form-input" id="cb-start" placeholder="000" max="999"><span class="input-suffix">°C</span></div>
           </div>
           <div>
             <div class="form-label">End Temp</div>
-            <div class="input-suffix-wrap">
-              <input type="number" class="form-input" id="cb-end" placeholder="000" max="999">
-              <span class="input-suffix">°C</span>
-            </div>
+            <div class="input-suffix-wrap"><input type="number" class="form-input" id="cb-end" placeholder="000" max="999"><span class="input-suffix">°C</span></div>
           </div>
         </div>
       </div>
       <div class="form-row">
-        <div class="form-label">Before Unload Temp</div>
-        <div class="input-suffix-wrap">
-          <input type="number" class="form-input" id="cb-unload" placeholder="000" max="999">
-          <span class="input-suffix">°C</span>
+        <div class="two-col">
+          <div>
+            <div class="form-label">Before Add L3 Temp</div>
+            <div class="input-suffix-wrap"><input type="number" class="form-input" id="cb-l3" placeholder="000" max="999"><span class="input-suffix">°C</span></div>
+          </div>
+          <div>
+            <div class="form-label">Before Unload Temp</div>
+            <div class="input-suffix-wrap"><input type="number" class="form-input" id="cb-unload" placeholder="000" max="999"><span class="input-suffix">°C</span></div>
+          </div>
         </div>
       </div>
     </div>
-
     <div class="form-section">
       <div class="form-section-title">Observations</div>
-      <div class="form-row">
-        <textarea class="form-textarea" id="cb-obs" rows="4"
-          placeholder="No. of trips / halts, during addition / during soak etc."></textarea>
-      </div>
+      <div class="form-row"><textarea class="form-textarea" id="cb-obs" rows="4" placeholder="No. of trips / halts, during addition / during soak etc."></textarea></div>
     </div>
-
     <div class="form-section">
       <div class="form-section-title">Expansion at CB Stage</div>
       <div class="form-row">
-        <div class="input-suffix-wrap">
-          <input type="number" class="form-input" id="cb-expansion" placeholder="000" max="999">
-          <span class="input-suffix">CC</span>
-        </div>
+        <div class="input-suffix-wrap"><input type="number" class="form-input" id="cb-expansion" placeholder="000" max="999"><span class="input-suffix">CC</span></div>
       </div>
     </div>
-
   </div>
   <div class="bottom-bar">
-    <button class="btn-save" onclick="saveStageProgress()">Save</button>
-    <button class="btn-primary" onclick="submitCB()">Submit ✓</button>
+    <button class="btn-save" onclick="submitCB(true)">Save</button>
+    <button class="btn-primary" onclick="submitCB(false)">Submit ✓</button>
   </div>
 </div>
 
-<!-- ══════════════════════════════════
-     NFG
-══════════════════════════════════ -->
-<div class="screen" id="screen-nfg">
+<!-- ══════════════ NFG & L1 CHOICE ══════════════ -->
+<div class="screen" id="screen-nfg-choice">
   <div class="app-header">
     <button class="back-btn" onclick="goto('screen-home')">‹</button>
-    <div><div class="header-title">NFG</div><div class="header-sub">Non-conforming goods</div></div>
+    <div><div class="header-title">NFG & L1</div><div class="header-sub">Natural Flake Graphite & L1 records</div></div>
+  </div>
+  <div class="choice-wrap">
+    <div class="choice-card" onclick="goto('screen-nfg-create')">
+      <div class="choice-icon orange">➕</div>
+      <div><div class="choice-title">Create New NFG GRN</div><div class="choice-desc">Add a new NFG goods receipt note</div></div>
+    </div>
+    <div class="choice-card" onclick="loadNFGList()">
+      <div class="choice-icon green">📂</div>
+      <div><div class="choice-title">Open Existing NFG GRN</div><div class="choice-desc">Add QC data to an existing NFG GRN</div></div>
+    </div>
+    <div class="choice-card" onclick="goto('screen-l1-create')">
+      <div class="choice-icon blue">🧪</div>
+      <div><div class="choice-title">Create New L1 GRN</div><div class="choice-desc">Add a new L1 goods receipt note</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ CREATE NFG GRN ══════════════ -->
+<div class="screen" id="screen-nfg-create">
+  <div class="app-header">
+    <button class="back-btn" onclick="goto('screen-nfg-choice')">‹</button>
+    <div><div class="header-title">Create NFG GRN</div><div class="header-sub">New goods receipt</div></div>
   </div>
   <div class="screen-body">
 
     <div class="form-section">
-      <div class="form-section-title">NFG Entry</div>
+      <div class="form-section-title">Date</div>
+      <div class="form-row"><input type="date" class="form-input" id="nfg-date"></div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">Innotek PO Number</div>
+      <div class="form-row"><input type="text" class="form-input" id="nfg-po" placeholder="e.g. 26-27/049"></div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">NFG Grade</div>
       <div class="form-row">
-        <div class="form-label">Date</div>
-        <input type="date" class="form-input" id="nfg-date">
-      </div>
-      <div class="form-row">
-        <div class="form-label">NFG Code</div>
-        <input type="text" class="form-input" id="nfg-code" placeholder="Enter NFG code">
-      </div>
-      <div class="form-row">
-        <div class="form-label">GRN Number</div>
-        <input type="text" class="form-input" id="nfg-grn" placeholder="Enter GRN number">
-      </div>
-      <div class="form-row">
-        <div class="form-label">Bag Number</div>
-        <input type="text" class="form-input" id="nfg-bag" placeholder="Enter bag number">
-      </div>
-      <div class="form-row">
-        <div class="form-label">Weight</div>
-        <div class="input-suffix-wrap">
-          <input type="number" class="form-input" id="nfg-weight" placeholder="0.00" step="0.01">
-          <span class="input-suffix">kg</span>
+        <select class="form-select" id="nfg-grade" onchange="onNFGGradeChange()">
+          <option value="">Select grade</option>
+          <option value="+899">+899</option>
+          <option value="+599">+599</option>
+          <option value="+899.5">+899.5</option>
+          <option value="+599.5">+599.5</option>
+          <option value="+8520">+8520</option>
+          <option value="+897">+897</option>
+          <option value="+597">+597</option>
+          <option value="+895">+895</option>
+          <option value="+595">+595</option>
+          <option value="+890">+890</option>
+          <option value="+590">+590</option>
+        </select>
+        <div id="nfg-code-display" style="margin-top:8px;display:none">
+          NFG Code: <span class="auto-chip" id="nfg-code-chip"></span>
         </div>
       </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">Supplier</div>
       <div class="form-row">
-        <div class="form-label">Notes</div>
-        <textarea class="form-textarea" id="nfg-notes" placeholder="Enter any notes…"></textarea>
+        <select class="form-select" id="nfg-supplier" onchange="onSupplierChange()">
+          <option value="">Select supplier</option>
+          <option value="Asbury|Gallois">Asbury</option>
+          <option value="DGD Industries|Tanzania / Mozambique">DGD Industries</option>
+          <option value="Advanced Graphite Vizag|Tanzania / Vizag">Advanced Graphite Vizag</option>
+          <option value="Goyal Enterprises|Tanzania / Bhuj">Goyal Enterprises</option>
+          <option value="Pranagraf|Madagascar">Pranagraf</option>
+          <option value="NextSource|Madagascar">NextSource</option>
+        </select>
+        <div class="supplier-source" id="nfg-supplier-source"></div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">Number of Bags</div>
+      <div class="form-row">
+        <input type="number" class="form-input" id="nfg-num-bags" placeholder="Enter number of bags" min="1" max="100" onchange="buildBagRows()">
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">Total Estimated Weight</div>
+      <div class="form-row">
+        <div class="input-suffix-wrap">
+          <input type="number" class="form-input" id="nfg-total-weight" placeholder="00000" max="99999">
+          <span class="input-suffix">Kg</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section" id="nfg-bags-section" style="display:none">
+      <div class="form-section-title">Bag Weights</div>
+      <div id="nfg-bag-rows"></div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">NFG GRN (Auto-generated)</div>
+      <div class="form-row">
+        <input type="text" class="form-input" id="nfg-grn-display" readonly placeholder="Fill PO No. and Grade above">
       </div>
     </div>
 
   </div>
   <div class="bottom-bar">
-    <button class="btn-save" onclick="saveStageProgress()">Save</button>
-    <button class="btn-primary" onclick="submitNFG()">Submit ✓</button>
+    <button class="btn-save" onclick="saveNFGProgress()">Save Progress</button>
+    <button class="btn-primary" onclick="submitNFGCreate()">Submit ✓</button>
   </div>
 </div>
 
-<!-- ══════════════════════════════════
-     DISPATCH CHOICE
-══════════════════════════════════ -->
+<!-- ══════════════ NFG GRN LIST ══════════════ -->
+<div class="screen" id="screen-nfg-list">
+  <div class="app-header">
+    <button class="back-btn" onclick="goto('screen-nfg-choice')">‹</button>
+    <div><div class="header-title">Select NFG GRN</div><div class="header-sub">Tap to open QC data entry</div></div>
+  </div>
+  <div class="list-wrap" id="nfg-list-body"></div>
+</div>
+
+<!-- ══════════════ NFG QC FORM ══════════════ -->
+<div class="screen" id="screen-nfg-qc">
+  <div class="app-header">
+    <button class="back-btn" onclick="goto('screen-nfg-list')">‹</button>
+    <div><div class="header-title" id="nfg-qc-title">NFG QC Entry</div><div class="header-sub">Fill in QC data per bag</div></div>
+  </div>
+  <div class="screen-body" id="nfg-qc-body"></div>
+  <div class="bottom-bar">
+    <button class="btn-save" onclick="saveNFGQCProgress()">Save Progress</button>
+    <button class="btn-primary" onclick="submitNFGQC()">Submit & Finalise ✓</button>
+  </div>
+</div>
+
+<!-- ══════════════ CREATE L1 GRN ══════════════ -->
+<div class="screen" id="screen-l1-create">
+  <div class="app-header">
+    <button class="back-btn" onclick="goto('screen-nfg-choice')">‹</button>
+    <div><div class="header-title">Create L1 GRN</div><div class="header-sub">New L1 goods receipt</div></div>
+  </div>
+  <div class="screen-body">
+
+    <div class="form-section">
+      <div class="form-section-title">Date In</div>
+      <div class="form-row"><input type="date" class="form-input" id="l1-date" onchange="updateL1GRN()"></div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">Weight</div>
+      <div class="form-row">
+        <div class="input-suffix-wrap">
+          <input type="number" class="form-input" id="l1-weight" placeholder="00000" max="99999">
+          <span class="input-suffix">Kg</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">Supplier Name</div>
+      <div class="form-row">
+        <select class="form-select" id="l1-supplier">
+          <option value="">Select supplier</option>
+          <option>Shreehari Enterprises</option>
+          <option>Reliable Chemicals</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">Analysis</div>
+      <div class="form-row">
+        <div class="two-col">
+          <div>
+            <div class="form-label">Concentration</div>
+            <div class="input-suffix-wrap">
+              <input type="number" class="form-input" id="l1-conc" placeholder="00.00" step="0.01">
+              <span class="input-suffix">%</span>
+            </div>
+          </div>
+          <div>
+            <div class="form-label">Density</div>
+            <input type="number" class="form-input" id="l1-density" placeholder="00.00" step="0.01">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">GRN-L1 (Auto-generated)</div>
+      <div class="form-row"><input type="text" class="form-input" id="l1-grn-display" readonly placeholder="Select date above"></div>
+    </div>
+
+  </div>
+  <div class="bottom-bar">
+    <button class="btn-primary" onclick="submitL1Create()">Submit ✓</button>
+  </div>
+</div>
+
+<!-- ══════════════ DISPATCH CHOICE ══════════════ -->
 <div class="screen" id="screen-dispatch-choice">
   <div class="app-header">
     <button class="back-btn" onclick="goto('screen-home')">‹</button>
@@ -656,24 +633,25 @@ body {
   <div class="choice-wrap">
     <div class="choice-card" onclick="goto('screen-dispatch-new')">
       <div class="choice-icon blue">➕</div>
-      <div>
-        <div class="choice-title">Create New</div>
-        <div class="choice-desc">Start a new dispatch record with lot details</div>
-      </div>
+      <div><div class="choice-title">Create New</div><div class="choice-desc">Start a new dispatch record with lot details</div></div>
     </div>
-    <div class="choice-card" onclick="goto('screen-dispatch-form')">
+    <div class="choice-card" onclick="loadDispatchList()">
       <div class="choice-icon green">📂</div>
-      <div>
-        <div class="choice-title">Open Existing</div>
-        <div class="choice-desc">Resume or review a previous dispatch</div>
-      </div>
+      <div><div class="choice-title">Open Existing</div><div class="choice-desc">Resume a previous dispatch sample form</div></div>
     </div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════
-     DISPATCH — New Basic Data
-══════════════════════════════════ -->
+<!-- ══════════════ DISPATCH LIST ══════════════ -->
+<div class="screen" id="screen-dispatch-list">
+  <div class="app-header">
+    <button class="back-btn" onclick="goto('screen-dispatch-choice')">‹</button>
+    <div><div class="header-title">Select Dispatch</div><div class="header-sub">Tap to open sample form</div></div>
+  </div>
+  <div class="list-wrap" id="dispatch-list-body"></div>
+</div>
+
+<!-- ══════════════ DISPATCH NEW BASIC ══════════════ -->
 <div class="screen" id="screen-dispatch-new">
   <div class="app-header">
     <button class="back-btn" onclick="goto('screen-dispatch-choice')">‹</button>
@@ -683,9 +661,7 @@ body {
 
     <div class="form-section">
       <div class="form-section-title">Material Lot No</div>
-      <div class="form-row">
-        <input type="text" class="form-input" id="disp-lot" placeholder="Enter material lot number">
-      </div>
+      <div class="form-row"><input type="text" class="form-input" id="disp-lot" placeholder="Enter material lot number"></div>
     </div>
 
     <div class="form-section">
@@ -693,9 +669,11 @@ body {
       <div class="form-row">
         <select class="form-select" id="disp-product">
           <option value="">Select product code</option>
-          <option>9950280</option><option>9980200</option><option>9980180</option>
-          <option>9650280</option><option>9680200</option><option>9080230</option>
-          <option>9080180</option><option>8550280</option><option>85200150</option>
+          <option>85200150</option><option>9080230</option><option>8550280</option>
+          <option>9650280</option><option>9980200</option><option>9950280</option>
+          <option>9980180</option><option>9680200</option><option>9650300</option>
+          <option>9050300</option><option>9450300</option><option>9450120</option>
+          <option>9080180</option>
         </select>
       </div>
     </div>
@@ -712,9 +690,7 @@ body {
 
     <div class="form-section">
       <div class="form-section-title">No. of Blends Est.</div>
-      <div class="form-row">
-        <input type="number" class="form-input" id="disp-blends" placeholder="Enter number" min="1" max="20">
-      </div>
+      <div class="form-row"><input type="number" class="form-input" id="disp-blends" placeholder="Enter number" min="1" max="50"></div>
     </div>
 
   </div>
@@ -723,9 +699,7 @@ body {
   </div>
 </div>
 
-<!-- ══════════════════════════════════
-     DISPATCH FORM — Samples
-══════════════════════════════════ -->
+<!-- ══════════════ DISPATCH SAMPLES ══════════════ -->
 <div class="screen" id="screen-dispatch-form">
   <div class="app-header">
     <button class="back-btn" onclick="goto('screen-dispatch-new')">‹</button>
@@ -739,263 +713,620 @@ body {
   </div>
   <div class="screen-body" id="dispatch-samples-body"></div>
   <div class="bottom-bar">
-    <button class="btn-save" onclick="saveStageProgress()">Save Progress</button>
+    <button class="btn-save" onclick="saveDispatchProgress()">Save Progress</button>
     <button class="btn-primary" onclick="submitDispatch()">Submit All ✓</button>
   </div>
 </div>
 
-<!-- ══════════════════════════════════
-     REPORT
-══════════════════════════════════ -->
+<!-- ══════════════ REPORT ══════════════ -->
 <div class="screen" id="screen-report">
   <div class="app-header">
     <button class="back-btn" onclick="goto('screen-home')">‹</button>
     <div><div class="header-title">Reports</div><div class="header-sub">Generated reports</div></div>
   </div>
-  <div class="coming-soon">
-    <div class="icon">📊</div>
-    Reports module — coming soon
-  </div>
+  <div class="coming-soon"><div class="icon">📊</div>Reports module — coming soon</div>
 </div>
 
 <script>
-// ════════════════════════════════════
-// CONFIG — your Google Apps Script URL goes here
-// ════════════════════════════════════
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwQYqIetHRQ1ivmt4GBTfuSRy1yIOzG1b02SwQngclljjwbZ15fvJ9GyRB0RsCGdlcW2g/exec';
+// ══════════════════════════════════════════
+// CONFIG — replace with your deployed Apps Script URL
+// ══════════════════════════════════════════
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxndbj3oYBWFHw7ywdbW53eccklUS86VZCjE9M3nUwNXRcd384NWncpy2DKE47cAhG17g/exec';
 
-// ════════════════════════════════════
+// ══════════════════════════════════════════
+// LOOKUP TABLES
+// ══════════════════════════════════════════
+const PRODUCT_NFG = {
+  '85200150':'NFGD4','9080230':'NFGB4','8550280':'NFGA4',
+  '9650280':'NFGA2','9980200':'NFGB1','9950280':'NFGA1',
+  '9980180':'NFGB1','9680200':'NFGB3','9650300':'NFGA2',
+  '9050300':'NFGA4','9450300':'NFGA3','9450120':'NFGA3','9080180':'NFGB4'
+};
+const GRADE_CODE = {
+  '+899':'NFGB1','+599':'NFGA1','+899.5':'NFGB0','+599.5':'NFGA0',
+  '+8520':'NFGD4','+897':'NFGB2','+597':'NFGA2','+895':'NFGB3',
+  '+595':'NFGA3','+890':'NFGB4','+590':'NFGA4'
+};
+
+// ══════════════════════════════════════════
 // STATE
-// ════════════════════════════════════
+// ══════════════════════════════════════════
+let selectedCB = 'CB1';
 let currentBatch = {};
 let currentDispatch = {};
-let selectedCB = 'CB1';
+let currentNFGGRN = {};
+let availableNFGGRNs = []; // loaded from sheet
+let availableL1GRNs = [];  // loaded from sheet
 
-// ════════════════════════════════════
-// NAVIGATION
-// ════════════════════════════════════
-function goto(id) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+// ══════════════════════════════════════════
+// NAV
+// ══════════════════════════════════════════
+function goto(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  window.scrollTo(0, 0);
+  window.scrollTo(0,0);
 }
 
-// ════════════════════════════════════
-// TOAST
-// ════════════════════════════════════
-function showToast(msg, type = '') {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.className = 'toast show ' + type;
-  setTimeout(() => { t.className = 'toast'; }, 3000);
+// ══════════════════════════════════════════
+// TOAST & LOADING
+// ══════════════════════════════════════════
+function showToast(msg, type=''){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.className='toast show '+type;
+  setTimeout(()=>{t.className='toast'},3200);
+}
+function showLoading(v){document.getElementById('overlay').classList.toggle('show',v)}
+
+// ══════════════════════════════════════════
+// API
+// ══════════════════════════════════════════
+async function api(payload){
+  const r=await fetch(SCRIPT_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+  const j=await r.json();
+  if(j.status!=='success') throw new Error(j.message||'Unknown error');
+  return j;
+}
+async function apiGet(action, params={}){
+  const url=new URL(SCRIPT_URL);
+  url.searchParams.set('action',action);
+  Object.entries(params).forEach(([k,v])=>url.searchParams.set(k,v));
+  const r=await fetch(url.toString());
+  const j=await r.json();
+  if(j.status!=='success') throw new Error(j.message||'Unknown error');
+  return j;
 }
 
-// ════════════════════════════════════
-// LOADING
-// ════════════════════════════════════
-function showLoading(v) {
-  document.getElementById('overlay').classList.toggle('show', v);
+// ══════════════════════════════════════════
+// HIGHLIGHT
+// ══════════════════════════════════════════
+function hl(id){
+  const el=document.getElementById(id); if(!el)return;
+  el.classList.add('error'); el.focus();
+  setTimeout(()=>el.classList.remove('error'),2500);
 }
 
-// ════════════════════════════════════
+// ══════════════════════════════════════════
 // INIT
-// ════════════════════════════════════
-window.addEventListener('DOMContentLoaded', () => {
-  const today = new Date().toISOString().split('T')[0];
-  ['batch-date', 'nfg-date'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.value = today;
+// ══════════════════════════════════════════
+window.addEventListener('DOMContentLoaded',()=>{
+  const today=new Date().toISOString().split('T')[0];
+  ['batch-date','nfg-date','l1-date'].forEach(id=>{
+    const el=document.getElementById(id); if(el) el.value=today;
   });
-  // mirror weight inputs to display cells
-  document.getElementById('batch-wt1').addEventListener('input', function() {
-    document.getElementById('batch-wt1-disp').textContent = this.value ? this.value + ' kg' : '—';
-  });
-  document.getElementById('batch-wt2').addEventListener('input', function() {
-    document.getElementById('batch-wt2-disp').textContent = this.value ? this.value + ' kg' : '—';
-  });
+  loadGRNDropdowns();
 });
 
-// ════════════════════════════════════
+// ══════════════════════════════════════════
+// LOAD GRN DROPDOWNS FOR NEW BATCH
+// ══════════════════════════════════════════
+async function loadGRNDropdowns(){
+  try {
+    const r = await apiGet('getAvailableNFGGRNs');
+    availableNFGGRNs = r.data || [];
+    ['batch-grn-select-1','batch-grn-select-2'].forEach(id=>{
+      const sel=document.getElementById(id); if(!sel)return;
+      sel.innerHTML='<option value="">Select GRN</option>';
+      availableNFGGRNs.forEach(g=>{
+        const o=document.createElement('option');
+        o.value=g.grn; o.textContent=g.grn+' ('+g.remainingBags+' bags left)';
+        sel.appendChild(o);
+      });
+    });
+  } catch(e){ /* offline — silent */ }
+
+  try {
+    const r = await apiGet('getL1GRNs');
+    availableL1GRNs = r.data || [];
+    const sel=document.getElementById('batch-l1-grn'); if(!sel)return;
+    sel.innerHTML='<option value="">Select L1 GRN (latest first)</option>';
+    availableL1GRNs.forEach(g=>{
+      const o=document.createElement('option');
+      o.value=g.grn; o.textContent=g.grn+' — '+g.dateIn;
+      sel.appendChild(o);
+    });
+  } catch(e){ /* offline — silent */ }
+}
+
+// ══════════════════════════════════════════
 // CB PILL
-// ════════════════════════════════════
-function selectCB(el) {
-  document.querySelectorAll('.cb-pill').forEach(p => p.classList.remove('selected'));
-  el.classList.add('selected');
-  selectedCB = el.textContent;
+// ══════════════════════════════════════════
+function selectCB(el){
+  document.querySelectorAll('.cb-pill').forEach(p=>p.classList.remove('selected'));
+  el.classList.add('selected'); selectedCB=el.textContent;
 }
 
-// ════════════════════════════════════
-// STAGE PLACEHOLDER
-// ════════════════════════════════════
-function openStage(name) {
-  showToast(name + ' — coming soon');
+// ══════════════════════════════════════════
+// PRODUCT → NFG CODE AUTO
+// ══════════════════════════════════════════
+function onProductChange(){
+  const v=document.getElementById('batch-product').value;
+  const code=PRODUCT_NFG[v]||'';
+  document.getElementById('batch-nfg-code').value=code;
 }
 
-function saveStageProgress() {
-  showToast('Progress saved locally', 'success');
-}
-
-// ════════════════════════════════════
-// SEND TO GOOGLE SHEETS
-// ════════════════════════════════════
-async function sendToSheet(payload) {
-  const resp = await fetch(SCRIPT_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
+// ══════════════════════════════════════════
+// GRN → BAGS
+// ══════════════════════════════════════════
+function onGRNChange(row){
+  const grn=document.getElementById('batch-grn-select-'+row).value;
+  const bagSel=document.getElementById('batch-bag-select-'+row);
+  const bagRow=document.getElementById('batch-bag-row-'+row);
+  const wtRow=document.getElementById('batch-wt-row-'+row);
+  bagSel.innerHTML='<option value="">Select bag</option>';
+  document.getElementById('batch-wt-'+row).value='';
+  if(!grn){bagRow.style.display='none';wtRow.style.display='none';return;}
+  const grnData=availableNFGGRNs.find(g=>g.grn===grn);
+  if(!grnData){return;}
+  bagRow.style.display='block';
+  wtRow.style.display='none';
+  grnData.bags.forEach(b=>{
+    if(!b.consumed){
+      const o=document.createElement('option');
+      o.value=b.bagNo+'|'+b.weight;
+      o.textContent='Bag '+b.bagNo;
+      bagSel.appendChild(o);
+    }
   });
-  const json = await resp.json();
-  if (json.status !== 'success') throw new Error(json.message || 'Unknown error');
-  return json;
 }
 
-// ════════════════════════════════════
+function onBagChange(row){
+  const val=document.getElementById('batch-bag-select-'+row).value;
+  const wtRow=document.getElementById('batch-wt-row-'+row);
+  if(!val){wtRow.style.display='none';return;}
+  const [bagNo,weight]=val.split('|');
+  document.getElementById('batch-wt-'+row).value=weight+' Kg';
+  wtRow.style.display='block';
+}
+
+// ══════════════════════════════════════════
+// L1 GRN → AUTO-FILL
+// ══════════════════════════════════════════
+function onL1GRNChange(){
+  const grn=document.getElementById('batch-l1-grn').value;
+  const l1=availableL1GRNs.find(g=>g.grn===grn);
+  document.getElementById('batch-l1-conc').value=l1?l1.concentration:'';
+  document.getElementById('batch-l1-density').value=l1?l1.density:'';
+}
+
+// ══════════════════════════════════════════
 // SUBMIT BATCH
-// ════════════════════════════════════
-function submitBatch() {
-  const batchNum = document.getElementById('batch-number').value.trim();
-  const product  = document.getElementById('batch-product').value;
-  const date     = document.getElementById('batch-date').value;
+// ══════════════════════════════════════════
+async function submitBatch(){
+  const bn=document.getElementById('batch-number').value.trim();
+  const prod=document.getElementById('batch-product').value;
+  const date=document.getElementById('batch-date').value;
+  if(!bn){hl('batch-number');showToast('Enter batch number','error');return;}
+  if(!prod){hl('batch-product');showToast('Select product code','error');return;}
+  if(!date){hl('batch-date');showToast('Select date','error');return;}
 
-  if (!batchNum) { highlight('batch-number'); showToast('Enter a batch number', 'error'); return; }
-  if (!product)  { highlight('batch-product'); showToast('Select a product code', 'error'); return; }
-  if (!date)     { highlight('batch-date'); showToast('Select a date', 'error'); return; }
+  const bag1val=document.getElementById('batch-bag-select-1').value;
+  const bag2val=document.getElementById('batch-bag-select-2').value;
 
-  currentBatch = {
-    batchNumber: batchNum,
-    date,
-    product,
-    nfgCode:  document.getElementById('batch-nfg-code').value.trim(),
-    grn1:     document.getElementById('batch-grn1').value.trim(),
-    weight1:  document.getElementById('batch-wt1').value,
-    grn2:     document.getElementById('batch-grn2').value.trim(),
-    weight2:  document.getElementById('batch-wt2').value,
-    l1Conc:   document.getElementById('batch-conc').value,
-    l1Density:document.getElementById('batch-density').value,
-    obs:      document.getElementById('batch-obs').value.trim(),
-    cb:       selectedCB
+  currentBatch={
+    batchNumber:bn, date, product:prod,
+    nfgCode:document.getElementById('batch-nfg-code').value,
+    grn1:document.getElementById('batch-grn-select-1').value,
+    bag1:bag1val?bag1val.split('|')[0]:'',
+    weight1:document.getElementById('batch-wt-1').value,
+    grn2:document.getElementById('batch-grn-select-2').value,
+    bag2:bag2val?bag2val.split('|')[0]:'',
+    weight2:document.getElementById('batch-wt-2').value,
+    l1GRN:document.getElementById('batch-l1-grn').value,
+    l1Conc:document.getElementById('batch-l1-conc').value,
+    l1Density:document.getElementById('batch-l1-density').value,
+    obs:document.getElementById('batch-obs').value.trim(),
+    cb:selectedCB
   };
 
-  document.getElementById('bi-batch').textContent   = batchNum;
-  document.getElementById('bi-product').textContent = product;
-  document.getElementById('bi-cb').textContent      = selectedCB;
-  document.getElementById('bi-date').textContent    = date;
+  ['bi-batch','bi-product','bi-cb','bi-date'].forEach((id,i)=>{
+    document.getElementById(id).textContent=[bn,prod,selectedCB,date][i];
+  });
 
   showLoading(true);
-  sendToSheet({ sheet: 'BATCHES', action: 'append', data: currentBatch })
-    .then(() => {
-      showLoading(false);
-      showToast('Batch saved ✓', 'success');
-      goto('screen-batch-process');
-    })
-    .catch(err => {
-      showLoading(false);
-      showToast('Save failed: ' + err.message, 'error');
-    });
+  try{
+    await api({sheet:'BATCHES',action:'append',data:currentBatch});
+    // mark bags as consumed
+    if(currentBatch.grn1&&currentBatch.bag1)
+      await api({action:'markBagConsumed',grn:currentBatch.grn1,bag:currentBatch.bag1});
+    if(currentBatch.grn2&&currentBatch.bag2)
+      await api({action:'markBagConsumed',grn:currentBatch.grn2,bag:currentBatch.bag2});
+    showLoading(false);
+    showToast('Batch saved ✓','success');
+    goto('screen-batch-process');
+  } catch(e){
+    showLoading(false);
+    showToast('Save failed: '+e.message,'error');
+  }
 }
 
-// ════════════════════════════════════
-// SUBMIT CB
-// ════════════════════════════════════
-function submitCB() {
-  const data = {
-    batchNumber: currentBatch.batchNumber || '—',
-    stage:       'CB',
-    startTemp:   document.getElementById('cb-start').value,
-    endTemp:     document.getElementById('cb-end').value,
-    unloadTemp:  document.getElementById('cb-unload').value,
-    obs:         document.getElementById('cb-obs').value.trim(),
-    expansion:   document.getElementById('cb-expansion').value
+// ══════════════════════════════════════════
+// LOAD BATCH LIST
+// ══════════════════════════════════════════
+async function loadBatchList(){
+  showLoading(true);
+  try{
+    const r=await apiGet('getBatches');
+    showLoading(false);
+    const body=document.getElementById('batch-list-body');
+    const rows=r.data||[];
+    if(rows.length===0){
+      body.innerHTML='<div class="list-empty"><div class="icon">🧪</div>No batches found.<br>Create a new batch first.</div>';
+    } else {
+      body.innerHTML='';
+      rows.forEach(b=>{
+        const el=document.createElement('div');
+        el.className='list-item';
+        el.innerHTML=`<div class="list-item-title">${b.batchNumber}</div><div class="list-item-sub">${b.product} &nbsp;·&nbsp; ${b.date} &nbsp;·&nbsp; ${b.cb}</div>`;
+        el.onclick=()=>openExistingBatch(b);
+        body.appendChild(el);
+      });
+    }
+    goto('screen-batch-list');
+  } catch(e){
+    showLoading(false);
+    showToast('Failed to load: '+e.message,'error');
+  }
+}
+
+function openExistingBatch(b){
+  currentBatch=b;
+  ['bi-batch','bi-product','bi-cb','bi-date'].forEach((id,i)=>{
+    document.getElementById(id).textContent=[b.batchNumber,b.product,b.cb,b.date][i];
+  });
+  goto('screen-batch-process');
+}
+
+// ══════════════════════════════════════════
+// CB SUBMIT
+// ══════════════════════════════════════════
+async function submitCB(saveOnly){
+  const data={
+    batchNumber:currentBatch.batchNumber||'—', stage:'CB',
+    startTemp:document.getElementById('cb-start').value,
+    endTemp:document.getElementById('cb-end').value,
+    l3Temp:document.getElementById('cb-l3').value,
+    unloadTemp:document.getElementById('cb-unload').value,
+    obs:document.getElementById('cb-obs').value.trim(),
+    expansion:document.getElementById('cb-expansion').value,
+    draft:saveOnly?'yes':'no'
+  };
+  showLoading(true);
+  try{
+    await api({sheet:'BATCH_PROCESS',action:'append',data});
+    showLoading(false);
+    showToast(saveOnly?'Saved ✓':'CB submitted ✓','success');
+    if(!saveOnly) goto('screen-batch-process');
+  } catch(e){
+    showLoading(false);
+    showToast('Save failed: '+e.message,'error');
+  }
+}
+
+function stageToast(name){showToast(name+' — coming soon');}
+
+// ══════════════════════════════════════════
+// NFG GRADE → CODE
+// ══════════════════════════════════════════
+function onNFGGradeChange(){
+  const g=document.getElementById('nfg-grade').value;
+  const code=GRADE_CODE[g]||'';
+  const disp=document.getElementById('nfg-code-display');
+  document.getElementById('nfg-code-chip').textContent=code;
+  disp.style.display=code?'block':'none';
+  updateNFGGRN();
+}
+
+function onSupplierChange(){
+  const val=document.getElementById('nfg-supplier').value;
+  const [,source]=(val||'|').split('|');
+  document.getElementById('nfg-supplier-source').textContent=source?'Source: '+source:'';
+}
+
+function buildBagRows(){
+  const n=parseInt(document.getElementById('nfg-num-bags').value)||0;
+  const sec=document.getElementById('nfg-bags-section');
+  const body=document.getElementById('nfg-bag-rows');
+  body.innerHTML='';
+  if(n<1){sec.style.display='none';return;}
+  sec.style.display='block';
+  for(let i=1;i<=n;i++){
+    const row=document.createElement('div');
+    row.className='bag-row';
+    row.innerHTML=`<div class="bag-label">Bag ${String(i).padStart(2,'0')}</div>
+    <div class="input-suffix-wrap">
+      <input type="number" class="form-input" id="nfg-bag-wt-${i}" placeholder="000.00" step="0.01">
+      <span class="input-suffix">Kg</span>
+    </div>`;
+    body.appendChild(row);
+  }
+}
+
+function updateNFGGRN(){
+  const po=document.getElementById('nfg-po').value.trim();
+  const grade=document.getElementById('nfg-grade').value;
+  const code=GRADE_CODE[grade]||'';
+  const suffix=code?code.slice(-2):'??';
+  if(po&&code){
+    document.getElementById('nfg-grn-display').value=po+'/01/'+suffix;
+  } else {
+    document.getElementById('nfg-grn-display').value='';
+  }
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const poEl=document.getElementById('nfg-po');
+  if(poEl) poEl.addEventListener('input',updateNFGGRN);
+  const l1d=document.getElementById('l1-date');
+  if(l1d) l1d.addEventListener('change',updateL1GRN);
+});
+
+async function saveNFGProgress(){
+  showToast('Progress saved','success');
+}
+
+async function submitNFGCreate(){
+  const po=document.getElementById('nfg-po').value.trim();
+  const grade=document.getElementById('nfg-grade').value;
+  const grn=document.getElementById('nfg-grn-display').value;
+  if(!po){hl('nfg-po');showToast('Enter PO number','error');return;}
+  if(!grade){hl('nfg-grade');showToast('Select NFG grade','error');return;}
+  if(!grn){showToast('GRN not generated','error');return;}
+
+  const numBags=parseInt(document.getElementById('nfg-num-bags').value)||0;
+  const bags=[];
+  for(let i=1;i<=numBags;i++){
+    const wt=document.getElementById('nfg-bag-wt-'+i)?.value||'';
+    bags.push({bagNo:String(i).padStart(2,'0'),weight:wt,consumed:false});
+  }
+  const supplierVal=document.getElementById('nfg-supplier').value;
+  const [supplierName]=supplierVal.split('|');
+
+  const data={
+    grn, date:document.getElementById('nfg-date').value,
+    po, grade, nfgCode:GRADE_CODE[grade]||'',
+    supplier:supplierName,
+    numBags, totalWeight:document.getElementById('nfg-total-weight').value,
+    bags:JSON.stringify(bags)
   };
 
   showLoading(true);
-  sendToSheet({ sheet: 'BATCH_PROCESS', action: 'append', data })
-    .then(() => {
-      showLoading(false);
-      showToast('CB data saved ✓', 'success');
-      goto('screen-batch-process');
-    })
-    .catch(err => {
-      showLoading(false);
-      showToast('Save failed: ' + err.message, 'error');
-    });
+  try{
+    await api({sheet:'NFG_GRN',action:'append',data});
+    showLoading(false);
+    showToast('NFG GRN submitted ✓','success');
+    setTimeout(()=>goto('screen-nfg-choice'),1500);
+  } catch(e){
+    showLoading(false);
+    showToast('Submit failed: '+e.message,'error');
+  }
 }
 
-// ════════════════════════════════════
-// SUBMIT NFG
-// ════════════════════════════════════
-function submitNFG() {
-  const code = document.getElementById('nfg-code').value.trim();
-  if (!code) { highlight('nfg-code'); showToast('Enter NFG code', 'error'); return; }
+// ══════════════════════════════════════════
+// NFG LIST & QC
+// ══════════════════════════════════════════
+async function loadNFGList(){
+  showLoading(true);
+  try{
+    const r=await apiGet('getNFGGRNs');
+    showLoading(false);
+    const body=document.getElementById('nfg-list-body');
+    const rows=r.data||[];
+    if(rows.length===0){
+      body.innerHTML='<div class="list-empty"><div class="icon">📦</div>No NFG GRNs found.<br>Create one first.</div>';
+    } else {
+      body.innerHTML='';
+      rows.forEach(g=>{
+        const el=document.createElement('div');
+        el.className='list-item';
+        el.innerHTML=`<div class="list-item-title">${g.grn}</div><div class="list-item-sub">${g.nfgCode} &nbsp;·&nbsp; ${g.supplier} &nbsp;·&nbsp; ${g.numBags} bags &nbsp;·&nbsp; ${g.date}</div>`;
+        el.onclick=()=>openNFGQC(g);
+        body.appendChild(el);
+      });
+    }
+    goto('screen-nfg-list');
+  } catch(e){
+    showLoading(false);
+    showToast('Failed to load: '+e.message,'error');
+  }
+}
 
-  const data = {
-    date:   document.getElementById('nfg-date').value,
-    code,
-    grn:    document.getElementById('nfg-grn').value.trim(),
-    bag:    document.getElementById('nfg-bag').value.trim(),
-    weight: document.getElementById('nfg-weight').value,
-    notes:  document.getElementById('nfg-notes').value.trim()
+function openNFGQC(g){
+  currentNFGGRN=g;
+  document.getElementById('nfg-qc-title').textContent=g.grn;
+  const body=document.getElementById('nfg-qc-body');
+  body.innerHTML='';
+  const bags=JSON.parse(g.bags||'[]');
+  bags.forEach((b,i)=>{
+    const uid='nqc'+i;
+    const block=document.createElement('div');
+    block.className='sample-block';
+    block.innerHTML=`
+      <div class="sample-title-bar"><div class="sample-dot"></div>Bag ${b.bagNo} &nbsp;·&nbsp; ${b.weight} Kg</div>
+      <div class="form-row">
+        <div class="two-col">
+          <div><div class="form-label">pH</div><input type="number" class="form-input" id="${uid}-ph" placeholder="00.00" step="0.01"></div>
+          <div><div class="form-label">Bulk Density</div><input type="number" class="form-input" id="${uid}-bd" placeholder="0.000" step="0.001"></div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-label">Carbon %</div>
+        <div class="vm-row">
+          <div><div class="calc-label">Empty Crucible</div><input type="number" class="form-input" id="${uid}-c1" placeholder="0.00" oninput="calcNFGCarbon('${uid}')"></div>
+          <div><div class="calc-label">Filled Crucible</div><input type="number" class="form-input" id="${uid}-c2" placeholder="0.00" oninput="calcNFGCarbon('${uid}')"></div>
+          <div><div class="calc-label">Final Wt</div><input type="number" class="form-input" id="${uid}-c3" placeholder="0.00" oninput="calcNFGCarbon('${uid}')"></div>
+          <div><div class="calc-label">Carbon %</div><div class="calc-result" id="${uid}-cout">—</div></div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-label">Mesh Analysis</div>
+        <div class="mesh-row">
+          <div><div class="calc-label">+50</div><input type="number" class="mesh-input" id="${uid}-m50" placeholder="0.00"></div>
+          <div><div class="calc-label">+80</div><input type="number" class="mesh-input" id="${uid}-m80" placeholder="0.00"></div>
+          <div><div class="calc-label">+100</div><input type="number" class="mesh-input" id="${uid}-m100" placeholder="0.00"></div>
+          <div><div class="calc-label">+150</div><input type="number" class="mesh-input" id="${uid}-m150" placeholder="0.00"></div>
+          <div><div class="calc-label">+200</div><input type="number" class="mesh-input" id="${uid}-m200" placeholder="0.00"></div>
+        </div>
+      </div>`;
+    body.appendChild(block);
+  });
+  goto('screen-nfg-qc');
+}
+
+function calcNFGCarbon(uid){
+  const c2=parseFloat(document.getElementById(uid+'-c2')?.value);
+  const c3=parseFloat(document.getElementById(uid+'-c3')?.value);
+  const el=document.getElementById(uid+'-cout');
+  if(!el)return;
+  el.textContent=(!isNaN(c2)&&!isNaN(c3)&&c2!==0)?((1-(c3/c2))*100).toFixed(2)+'%':'—';
+}
+
+async function saveNFGQCProgress(){showToast('QC progress saved','success');}
+
+async function submitNFGQC(){
+  showLoading(true);
+  try{
+    await api({sheet:'NFG_QC',action:'append',data:{grn:currentNFGGRN.grn,finalized:'yes'}});
+    showLoading(false);
+    showToast('NFG QC finalised ✓','success');
+    setTimeout(()=>goto('screen-nfg-choice'),1500);
+  } catch(e){
+    showLoading(false);
+    showToast('Submit failed: '+e.message,'error');
+  }
+}
+
+// ══════════════════════════════════════════
+// L1 GRN
+// ══════════════════════════════════════════
+function updateL1GRN(){
+  const d=document.getElementById('l1-date').value;
+  if(!d){document.getElementById('l1-grn-display').value='';return;}
+  const [yr,mo,dy]=d.split('-');
+  document.getElementById('l1-grn-display').value='L1_'+dy+mo+yr.slice(2);
+}
+
+async function submitL1Create(){
+  const date=document.getElementById('l1-date').value;
+  const grn=document.getElementById('l1-grn-display').value;
+  const supplier=document.getElementById('l1-supplier').value;
+  if(!date){hl('l1-date');showToast('Select date','error');return;}
+  if(!supplier){hl('l1-supplier');showToast('Select supplier','error');return;}
+
+  const data={
+    grn, dateIn:date,
+    weight:document.getElementById('l1-weight').value,
+    supplier,
+    concentration:document.getElementById('l1-conc').value,
+    density:document.getElementById('l1-density').value
   };
 
   showLoading(true);
-  sendToSheet({ sheet: 'NFG', action: 'append', data })
-    .then(() => {
-      showLoading(false);
-      showToast('NFG entry saved ✓', 'success');
-      goto('screen-home');
-    })
-    .catch(err => {
-      showLoading(false);
-      showToast('Save failed: ' + err.message, 'error');
-    });
+  try{
+    await api({sheet:'L1_GRN',action:'append',data});
+    showLoading(false);
+    showToast('L1 GRN saved ✓','success');
+    loadGRNDropdowns();
+    setTimeout(()=>goto('screen-nfg-choice'),1500);
+  } catch(e){
+    showLoading(false);
+    showToast('Save failed: '+e.message,'error');
+  }
 }
 
-// ════════════════════════════════════
-// DISPATCH — START FORM
-// ════════════════════════════════════
-function startDispatchForm() {
-  const lot     = document.getElementById('disp-lot').value.trim();
-  const product = document.getElementById('disp-product').value;
-  const blends  = parseInt(document.getElementById('disp-blends').value);
+// ══════════════════════════════════════════
+// DISPATCH
+// ══════════════════════════════════════════
+function startDispatchForm(){
+  const lot=document.getElementById('disp-lot').value.trim();
+  const product=document.getElementById('disp-product').value;
+  const blends=parseInt(document.getElementById('disp-blends').value);
+  if(!lot){hl('disp-lot');showToast('Enter Material Lot No','error');return;}
+  if(!product){hl('disp-product');showToast('Select product code','error');return;}
+  if(!blends||blends<1){hl('disp-blends');showToast('Enter no. of blends','error');return;}
 
-  if (!lot)              { highlight('disp-lot');     showToast('Enter Material Lot No', 'error'); return; }
-  if (!product)          { highlight('disp-product'); showToast('Select a product code', 'error'); return; }
-  if (!blends || blends < 1) { highlight('disp-blends'); showToast('Enter no. of blends', 'error'); return; }
-
-  currentDispatch = {
-    lotNo:    lot,
-    product,
-    weight:   document.getElementById('disp-weight').value || '—',
+  currentDispatch={
+    lotNo:lot, product,
+    weight:document.getElementById('disp-weight').value||'—',
     blends
   };
-
-  document.getElementById('dh-lot').textContent     = lot;
-  document.getElementById('dh-product').textContent = product;
-  document.getElementById('dh-weight').textContent  = currentDispatch.weight + (currentDispatch.weight !== '—' ? ' Kg' : '');
-  document.getElementById('dh-blends').textContent  = blends;
-
+  ['dh-lot','dh-product','dh-weight','dh-blends'].forEach((id,i)=>{
+    document.getElementById(id).textContent=[lot,product,currentDispatch.weight+' Kg',blends][i];
+  });
   buildDispatchForm(blends);
   goto('screen-dispatch-form');
 }
 
-// ════════════════════════════════════
-// BUILD DISPATCH SAMPLE BLOCKS
-// ════════════════════════════════════
-function buildDispatchForm(blends) {
-  const totalSets = (blends * 2) + 2;
-  const body = document.getElementById('dispatch-samples-body');
-  body.innerHTML = '';
+async function loadDispatchList(){
+  showLoading(true);
+  try{
+    const r=await apiGet('getDispatches');
+    showLoading(false);
+    const body=document.getElementById('dispatch-list-body');
+    const rows=r.data||[];
+    if(rows.length===0){
+      body.innerHTML='<div class="list-empty"><div class="icon">🚚</div>No dispatches found.<br>Create a new dispatch first.</div>';
+    } else {
+      body.innerHTML='';
+      rows.forEach(d=>{
+        const el=document.createElement('div');
+        el.className='list-item';
+        el.innerHTML=`<div class="list-item-title">${d.lotNo}</div><div class="list-item-sub">${d.product} &nbsp;·&nbsp; ${d.blends} blends &nbsp;·&nbsp; ${d.weight} Kg</div>`;
+        el.onclick=()=>openExistingDispatch(d);
+        body.appendChild(el);
+      });
+    }
+    goto('screen-dispatch-list');
+  } catch(e){
+    showLoading(false);
+    showToast('Failed to load: '+e.message,'error');
+  }
+}
 
-  const today    = new Date().toISOString().split('T')[0];
-  const timeNow  = new Date().toTimeString().slice(0, 5);
+function openExistingDispatch(d){
+  currentDispatch=d;
+  ['dh-lot','dh-product','dh-weight','dh-blends'].forEach((id,i)=>{
+    document.getElementById(id).textContent=[d.lotNo,d.product,d.weight+' Kg',d.blends][i];
+  });
+  buildDispatchForm(parseInt(d.blends));
+  goto('screen-dispatch-form');
+}
 
-  for (let i = 0; i < totalSets; i++) {
-    const sampleNum = Math.floor(i / 2) + 1;
-    const uid = 'ds' + i;
-    const block = document.createElement('div');
-    block.className = 'sample-block';
-    block.innerHTML = `
-      <div class="sample-title-bar"><div class="sample-dot"></div>Sample ${sampleNum}</div>
+function buildDispatchForm(blends){
+  const totalSets=(blends*2)+2;
+  const body=document.getElementById('dispatch-samples-body');
+  body.innerHTML='';
+  const today=new Date().toISOString().split('T')[0];
+  const timeNow=new Date().toTimeString().slice(0,5);
+
+  for(let i=0;i<totalSets;i++){
+    const blendNum=Math.floor(i/2)+1;
+    const sampleNum=(i%2)+1;
+    const label=`Blend ${blendNum} Sample ${sampleNum}`;
+    const uid='ds'+i;
+    const block=document.createElement('div');
+    block.className='sample-block';
+    block.innerHTML=`
+      <div class="sample-title-bar"><div class="sample-dot"></div>${label}</div>
 
       <div class="form-row">
         <div class="form-label">Date & Time</div>
@@ -1008,188 +1339,119 @@ function buildDispatchForm(blends) {
       <div class="form-row">
         <div class="form-label">Expansion</div>
         <div class="exp-row">
-          <div>
-            <div class="calc-label">Test 1</div>
-            <div class="input-suffix-wrap">
-              <input type="number" class="form-input" id="${uid}-t1" placeholder="000" oninput="calcAvg('${uid}')">
-              <span class="input-suffix" style="font-size:10px">CC</span>
-            </div>
-          </div>
-          <div>
-            <div class="calc-label">Test 2</div>
-            <div class="input-suffix-wrap">
-              <input type="number" class="form-input" id="${uid}-t2" placeholder="000" oninput="calcAvg('${uid}')">
-              <span class="input-suffix" style="font-size:10px">CC</span>
-            </div>
-          </div>
-          <div>
-            <div class="calc-label">Test 3</div>
-            <div class="input-suffix-wrap">
-              <input type="number" class="form-input" id="${uid}-t3" placeholder="000" oninput="calcAvg('${uid}')">
-              <span class="input-suffix" style="font-size:10px">CC</span>
-            </div>
-          </div>
-          <div>
-            <div class="calc-label">Avg</div>
-            <div class="calc-result" id="${uid}-avg">—</div>
-          </div>
+          <div><div class="calc-label">Test 1</div>
+            <div class="input-suffix-wrap"><input type="number" class="form-input" id="${uid}-t1" placeholder="000" oninput="calcAvg('${uid}')"><span class="input-suffix" style="font-size:10px">CC</span></div></div>
+          <div><div class="calc-label">Test 2</div>
+            <div class="input-suffix-wrap"><input type="number" class="form-input" id="${uid}-t2" placeholder="000" oninput="calcAvg('${uid}')"><span class="input-suffix" style="font-size:10px">CC</span></div></div>
+          <div><div class="calc-label">Test 3</div>
+            <div class="input-suffix-wrap"><input type="number" class="form-input" id="${uid}-t3" placeholder="000" oninput="calcAvg('${uid}')"><span class="input-suffix" style="font-size:10px">CC</span></div></div>
+          <div><div class="calc-label">Avg</div><div class="calc-result" id="${uid}-avg">—</div></div>
         </div>
       </div>
 
       <div class="form-row">
-        <div class="form-label">pH</div>
-        <input type="number" class="form-input" id="${uid}-ph" placeholder="00.00" step="0.01" min="0" max="14">
-      </div>
-
-      <div class="form-row">
-        <div class="form-label">Bulk Density</div>
-        <input type="number" class="form-input" id="${uid}-bd" placeholder="0.000" step="0.001">
+        <div class="two-col">
+          <div><div class="form-label">pH</div><input type="number" class="form-input" id="${uid}-ph" placeholder="00.00" step="0.01" min="0" max="14"></div>
+          <div><div class="form-label">Bulk Density</div><input type="number" class="form-input" id="${uid}-bd" placeholder="0.000" step="0.001"></div>
+        </div>
       </div>
 
       <div class="form-row">
         <div class="form-label">Volatile Matter</div>
-        <div class="vm-grid">
-          <div><div class="calc-label">Empty Crucible Wt.</div>
-            <input type="number" class="form-input" id="${uid}-vm1" placeholder="0.00" oninput="calcVM('${uid}')"></div>
-          <div><div class="calc-label">Filled Crucible Wt.</div>
-            <input type="number" class="form-input" id="${uid}-vm2" placeholder="0.00" oninput="calcVM('${uid}')"></div>
-          <div><div class="calc-label">Final Wt.</div>
-            <input type="number" class="form-input" id="${uid}-vm3" placeholder="0.00" oninput="calcVM('${uid}')"></div>
-        </div>
-        <div class="result-row">
-          <div class="result-label">Volatile Matter %</div>
-          <div class="calc-result" id="${uid}-vmout" style="min-width:80px">—</div>
+        <div class="vm-row">
+          <div><div class="calc-label">Empty Crucible</div><input type="number" class="form-input" id="${uid}-vm1" placeholder="0.00" oninput="calcVM('${uid}')"></div>
+          <div><div class="calc-label">Filled Crucible</div><input type="number" class="form-input" id="${uid}-vm2" placeholder="0.00" oninput="calcVM('${uid}')"></div>
+          <div><div class="calc-label">Final Wt</div><input type="number" class="form-input" id="${uid}-vm3" placeholder="0.00" oninput="calcVM('${uid}')"></div>
+          <div><div class="calc-label">VM %</div><div class="calc-result" id="${uid}-vmout">—</div></div>
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-label">% Carbon</div>
-        <div class="vm-grid">
-          <div><div class="calc-label">Empty Crucible Wt.</div>
-            <input type="number" class="form-input" id="${uid}-c1" placeholder="0.00" oninput="calcCarbon('${uid}')"></div>
-          <div><div class="calc-label">Filled Crucible Wt.</div>
-            <input type="number" class="form-input" id="${uid}-c2" placeholder="0.00" oninput="calcCarbon('${uid}')"></div>
-          <div><div class="calc-label">Final Wt.</div>
-            <input type="number" class="form-input" id="${uid}-c3" placeholder="0.00" oninput="calcCarbon('${uid}')"></div>
-        </div>
-        <div class="result-row">
-          <div class="result-label">% Carbon</div>
-          <div class="calc-result" id="${uid}-cout" style="min-width:80px">—</div>
+        <div class="vm-row">
+          <div><div class="calc-label">Empty Crucible</div><input type="number" class="form-input" id="${uid}-c1" placeholder="0.00" oninput="calcCarbon('${uid}')"></div>
+          <div><div class="calc-label">Filled Crucible</div><input type="number" class="form-input" id="${uid}-c2" placeholder="0.00" oninput="calcCarbon('${uid}')"></div>
+          <div><div class="calc-label">Final Wt</div><input type="number" class="form-input" id="${uid}-c3" placeholder="0.00" oninput="calcCarbon('${uid}')"></div>
+          <div><div class="calc-label">Carbon %</div><div class="calc-result" id="${uid}-cout">—</div></div>
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-label">Mesh Analysis</div>
-        <div class="mesh-grid">
-          <div><div class="calc-label">+50</div>
-            <input type="number" class="form-input" id="${uid}-m50" placeholder="000.00" step="0.01"></div>
-          <div><div class="calc-label">+80</div>
-            <input type="number" class="form-input" id="${uid}-m80" placeholder="000.00" step="0.01"></div>
-          <div><div class="calc-label">+100</div>
-            <input type="number" class="form-input" id="${uid}-m100" placeholder="000.00" step="0.01"></div>
-          <div><div class="calc-label">+150</div>
-            <input type="number" class="form-input" id="${uid}-m150" placeholder="000.00" step="0.01"></div>
-          <div><div class="calc-label">+200</div>
-            <input type="number" class="form-input" id="${uid}-m200" placeholder="000.00" step="0.01"></div>
+        <div class="mesh-row">
+          <div><div class="calc-label">+50</div><input type="number" class="mesh-input" id="${uid}-m50" placeholder="0.00"></div>
+          <div><div class="calc-label">+80</div><input type="number" class="mesh-input" id="${uid}-m80" placeholder="0.00"></div>
+          <div><div class="calc-label">+100</div><input type="number" class="mesh-input" id="${uid}-m100" placeholder="0.00"></div>
+          <div><div class="calc-label">+150</div><input type="number" class="mesh-input" id="${uid}-m150" placeholder="0.00"></div>
+          <div><div class="calc-label">+200</div><input type="number" class="mesh-input" id="${uid}-m200" placeholder="0.00"></div>
         </div>
-      </div>
-    `;
+      </div>`;
     body.appendChild(block);
   }
+
+  const subRow=document.createElement('div');
+  subRow.style.padding='0 0 16px';
+  subRow.innerHTML='<button class="submit-btn" onclick="submitDispatch()">✓ Submit All Data</button>';
+  body.appendChild(subRow);
 }
 
-// ════════════════════════════════════
-// SUBMIT DISPATCH
-// ════════════════════════════════════
-async function submitDispatch() {
-  const blends    = currentDispatch.blends || 1;
-  const totalSets = (blends * 2) + 2;
-  const samples   = [];
+async function saveDispatchProgress(){showToast('Progress saved','success');}
 
-  for (let i = 0; i < totalSets; i++) {
-    const uid = 'ds' + i;
-    const sampleNum = Math.floor(i / 2) + 1;
-    const g = id => { const el = document.getElementById(id); return el ? el.value : ''; };
+async function submitDispatch(){
+  const blends=currentDispatch.blends||1;
+  const totalSets=(blends*2)+2;
+  const samples=[];
+  const g=id=>{const el=document.getElementById(id);return el?el.value:''};
+  const gc=id=>{const el=document.getElementById(id);return el?el.textContent:''};
+
+  for(let i=0;i<totalSets;i++){
+    const uid='ds'+i;
+    const blendNum=Math.floor(i/2)+1;
+    const sampleNum=(i%2)+1;
     samples.push({
-      lotNo:      currentDispatch.lotNo,
-      sampleLabel:'Sample ' + sampleNum,
-      date:       g(uid+'-date'),
-      time:       g(uid+'-time'),
-      expT1:      g(uid+'-t1'),
-      expT2:      g(uid+'-t2'),
-      expT3:      g(uid+'-t3'),
-      expAvg:     document.getElementById(uid+'-avg') ? document.getElementById(uid+'-avg').textContent : '—',
-      ph:         g(uid+'-ph'),
-      bulkDensity:g(uid+'-bd'),
-      vm1:        g(uid+'-vm1'),
-      vm2:        g(uid+'-vm2'),
-      vm3:        g(uid+'-vm3'),
-      vmPct:      document.getElementById(uid+'-vmout') ? document.getElementById(uid+'-vmout').textContent : '—',
-      c1:         g(uid+'-c1'),
-      c2:         g(uid+'-c2'),
-      c3:         g(uid+'-c3'),
-      cPct:       document.getElementById(uid+'-cout') ? document.getElementById(uid+'-cout').textContent : '—',
-      m50:        g(uid+'-m50'),
-      m80:        g(uid+'-m80'),
-      m100:       g(uid+'-m100'),
-      m150:       g(uid+'-m150'),
-      m200:       g(uid+'-m200')
+      lotNo:currentDispatch.lotNo,
+      sampleLabel:`Blend ${blendNum} Sample ${sampleNum}`,
+      date:g(uid+'-date'),time:g(uid+'-time'),
+      expT1:g(uid+'-t1'),expT2:g(uid+'-t2'),expT3:g(uid+'-t3'),expAvg:gc(uid+'-avg'),
+      ph:g(uid+'-ph'),bulkDensity:g(uid+'-bd'),
+      vm1:g(uid+'-vm1'),vm2:g(uid+'-vm2'),vm3:g(uid+'-vm3'),vmPct:gc(uid+'-vmout'),
+      c1:g(uid+'-c1'),c2:g(uid+'-c2'),c3:g(uid+'-c3'),cPct:gc(uid+'-cout'),
+      m50:g(uid+'-m50'),m80:g(uid+'-m80'),m100:g(uid+'-m100'),m150:g(uid+'-m150'),m200:g(uid+'-m200')
     });
   }
 
   showLoading(true);
-  try {
-    await sendToSheet({ sheet: 'DISPATCH', action: 'append', data: currentDispatch });
-    await sendToSheet({ sheet: 'DISPATCH_SAMPLES', action: 'appendBatch', data: samples });
+  try{
+    await api({sheet:'DISPATCH',action:'append',data:currentDispatch});
+    await api({sheet:'DISPATCH_SAMPLES',action:'appendBatch',data:samples});
     showLoading(false);
-    showToast('Dispatch submitted ✓', 'success');
-    setTimeout(() => goto('screen-home'), 1500);
-  } catch(err) {
+    showToast('Dispatch submitted ✓','success');
+    setTimeout(()=>goto('screen-home'),1500);
+  } catch(e){
     showLoading(false);
-    showToast('Submit failed: ' + err.message, 'error');
+    showToast('Submit failed: '+e.message,'error');
   }
 }
 
-// ════════════════════════════════════
+// ══════════════════════════════════════════
 // CALCULATIONS
-// ════════════════════════════════════
-function calcAvg(uid) {
-  const t1 = parseFloat(document.getElementById(uid+'-t1')?.value);
-  const t2 = parseFloat(document.getElementById(uid+'-t2')?.value);
-  const t3 = parseFloat(document.getElementById(uid+'-t3')?.value);
-  const el = document.getElementById(uid+'-avg');
-  if (!el) return;
-  const vals = [t1, t2, t3].filter(v => !isNaN(v) && v !== null);
-  el.textContent = vals.length ? (vals.reduce((a,b)=>a+b,0)/vals.length).toFixed(1)+' CC' : '—';
+// ══════════════════════════════════════════
+function calcAvg(uid){
+  const vals=[1,2,3].map(n=>parseFloat(document.getElementById(uid+'-t'+n)?.value)).filter(v=>!isNaN(v));
+  const el=document.getElementById(uid+'-avg');
+  if(el) el.textContent=vals.length?(vals.reduce((a,b)=>a+b,0)/vals.length).toFixed(1)+' CC':'—';
 }
-
-function calcVM(uid) {
-  const v2 = parseFloat(document.getElementById(uid+'-vm2')?.value);
-  const v3 = parseFloat(document.getElementById(uid+'-vm3')?.value);
-  const el = document.getElementById(uid+'-vmout');
-  if (!el) return;
-  el.textContent = (!isNaN(v2) && !isNaN(v3) && v2 !== 0)
-    ? ((1-(v3/v2))*100).toFixed(2)+'%' : '—';
+function calcVM(uid){
+  const v2=parseFloat(document.getElementById(uid+'-vm2')?.value);
+  const v3=parseFloat(document.getElementById(uid+'-vm3')?.value);
+  const el=document.getElementById(uid+'-vmout');
+  if(el) el.textContent=(!isNaN(v2)&&!isNaN(v3)&&v2!==0)?((1-(v3/v2))*100).toFixed(2)+'%':'—';
 }
-
-function calcCarbon(uid) {
-  const c2 = parseFloat(document.getElementById(uid+'-c2')?.value);
-  const c3 = parseFloat(document.getElementById(uid+'-c3')?.value);
-  const el = document.getElementById(uid+'-cout');
-  if (!el) return;
-  el.textContent = (!isNaN(c2) && !isNaN(c3) && c2 !== 0)
-    ? ((1-(c3/c2))*100).toFixed(2)+'%' : '—';
-}
-
-// ════════════════════════════════════
-// HIGHLIGHT ERROR FIELD
-// ════════════════════════════════════
-function highlight(id) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  el.classList.add('error');
-  el.focus();
-  setTimeout(() => el.classList.remove('error'), 2500);
+function calcCarbon(uid){
+  const c2=parseFloat(document.getElementById(uid+'-c2')?.value);
+  const c3=parseFloat(document.getElementById(uid+'-c3')?.value);
+  const el=document.getElementById(uid+'-cout');
+  if(el) el.textContent=(!isNaN(c2)&&!isNaN(c3)&&c2!==0)?((1-(c3/c2))*100).toFixed(2)+'%':'—';
 }
 </script>
 </body>
