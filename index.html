@@ -1213,27 +1213,42 @@ async function submitCB(saveOnly){
 // TIME PICKER
 // ══════════════════════════════════════════
 function pickTime(fieldId){
-  const modal=document.createElement('div');
-  modal.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:700;display:flex;align-items:flex-end;justify-content:center';
-  const now=new Date();
-  const hh=String(now.getHours()).padStart(2,'0');
-  const mm=String(now.getMinutes()).padStart(2,'0');
-  modal.innerHTML=`
-    <div style="background:var(--surface);border-radius:14px 14px 0 0;padding:20px 16px 32px;width:100%;max-width:480px">
-      <div style="font-size:14px;font-weight:600;color:var(--text2);margin-bottom:14px">Set Time</div>
-      <input type="time" class="form-input" id="tmp-time-input" value="${hh}:${mm}" style="margin-bottom:16px">
-      <div style="display:flex;gap:10px">
-        <button class="btn-save" style="flex:1" onclick="this.closest('div[style]').remove()">Cancel</button>
-        <button class="btn-primary" onclick="
-          const v=document.getElementById('tmp-time-input').value;
-          document.getElementById('${fieldId}').value=v;
-          const btn=document.getElementById('${fieldId}-btn');
-          if(btn){btn.textContent='⏱ '+v;btn.classList.add('set');}
-          this.closest('div[style]').remove();
-        ">Set ✓</button>
-      </div>
+  // Remove any existing time modal first
+  const existing = document.getElementById('time-pick-modal');
+  if(existing) existing.remove();
+
+  const now = new Date();
+  const hh = String(now.getHours()).padStart(2,'0');
+  const mm = String(now.getMinutes()).padStart(2,'0');
+
+  const modal = document.createElement('div');
+  modal.id = 'time-pick-modal';
+  modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:700;display:flex;align-items:flex-end;justify-content:center';
+
+  const sheet = document.createElement('div');
+  sheet.style.cssText = 'background:var(--surface);border-radius:14px 14px 0 0;padding:20px 16px 32px;width:100%;max-width:480px';
+  sheet.innerHTML = `
+    <div style="font-size:14px;font-weight:600;color:var(--text2);margin-bottom:14px">Set Time</div>
+    <input type="time" class="form-input" id="tmp-time-input" value="${hh}:${mm}" style="margin-bottom:16px">
+    <div style="display:flex;gap:10px">
+      <button class="btn-save" style="flex:1" id="time-cancel-btn">Cancel</button>
+      <button class="btn-primary" id="time-confirm-btn">Set ✓</button>
     </div>`;
+  modal.appendChild(sheet);
   document.body.appendChild(modal);
+
+  document.getElementById('time-cancel-btn').addEventListener('click', function(){
+    document.getElementById('time-pick-modal').remove();
+  });
+  document.getElementById('time-confirm-btn').addEventListener('click', function(){
+    const v = document.getElementById('tmp-time-input').value;
+    if(v){
+      document.getElementById(fieldId).value = v;
+      const btn = document.getElementById(fieldId+'-btn');
+      if(btn){ btn.textContent = '⏱ '+v; btn.classList.add('set'); }
+    }
+    document.getElementById('time-pick-modal').remove();
+  });
 }
 
 // ══════════════════════════════════════════
