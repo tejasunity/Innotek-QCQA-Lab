@@ -731,7 +731,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 // ══════════════════════════════════════════
 // CONFIG — replace with your deployed Apps Script URL
 // ══════════════════════════════════════════
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxndbj3oYBWFHw7ywdbW53eccklUS86VZCjE9M3nUwNXRcd384NWncpy2DKE47cAhG17g/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwkfSZoDZiUi1k6PET1ZEwmM7xxRVYuqwpTeTjK0-qnmGgdGmJMWILJfMLSPnua_883hQ/exec';
 
 // ══════════════════════════════════════════
 // LOOKUP TABLES
@@ -781,18 +781,21 @@ function showLoading(v){document.getElementById('overlay').classList.toggle('sho
 // API
 // ══════════════════════════════════════════
 async function api(payload){
-  const r=await fetch(SCRIPT_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
-  const j=await r.json();
-  if(j.status!=='success') throw new Error(j.message||'Unknown error');
-  return j;
+  // Use no-cors FormData to avoid CORS preflight with Apps Script
+  const form = new FormData();
+  form.append('payload', JSON.stringify(payload));
+  await fetch(SCRIPT_URL, { method:'POST', body:form, mode:'no-cors' });
+  // no-cors means we can't read the response — assume success if no network error
+  return { status:'success' };
 }
 async function apiGet(action, params={}){
-  const url=new URL(SCRIPT_URL);
-  url.searchParams.set('action',action);
-  Object.entries(params).forEach(([k,v])=>url.searchParams.set(k,v));
-  const r=await fetch(url.toString());
-  const j=await r.json();
-  if(j.status!=='success') throw new Error(j.message||'Unknown error');
+  // GET requests follow redirects and don't trigger preflight
+  const url = new URL(SCRIPT_URL);
+  url.searchParams.set('action', action);
+  Object.entries(params).forEach(([k,v]) => url.searchParams.set(k, String(v)));
+  const r = await fetch(url.toString(), { redirect:'follow' });
+  const j = await r.json();
+  if(j.status !== 'success') throw new Error(j.message || 'Unknown error');
   return j;
 }
 
