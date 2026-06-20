@@ -157,6 +157,30 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 .spinner{width:40px;height:40px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 
+
+/* SEARCH BOX */
+.search-wrap{padding:12px 13px 4px}
+.search-input{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:15px;padding:11px 13px 11px 38px;font-family:var(--font);outline:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238b90a8' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:12px center}
+.search-input:focus{border-color:var(--accent)}
+
+/* TIME PICKER BUTTON */
+.time-pick-btn{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:14px;padding:10px 12px;font-family:var(--font);text-align:left;cursor:pointer;display:flex;align-items:center;gap:8px}
+.time-pick-btn.set{color:var(--accent2);border-color:rgba(56,201,160,.4)}
+.time-pick-btn .icon{font-size:16px}
+
+/* PREMIX TABLE */
+.premix-table{width:100%;border-collapse:collapse;font-size:12px}
+.premix-table th{background:var(--surface2);color:var(--text2);padding:8px 6px;text-align:center;font-size:11px;font-weight:600;border:1px solid var(--border)}
+.premix-table td{padding:5px 4px;border:1px solid var(--border);vertical-align:middle}
+.premix-table .round-cell{color:var(--text2);font-weight:600;text-align:center;font-size:12px;width:32px}
+.premix-table .nfg-cell{color:var(--accent2);font-size:11px;text-align:center;white-space:nowrap}
+.premix-table input.cell-input{width:100%;background:var(--bg);border:none;color:var(--text);font-size:12px;padding:6px 4px;font-family:var(--font);outline:none;text-align:center;min-width:48px}
+.premix-table .total-row td{background:var(--surface2);font-weight:700;color:var(--accent);font-size:12px;text-align:center}
+.premix-table .dt-cell{min-width:90px}
+.premix-table .dt-btn{background:none;border:none;color:var(--text2);font-size:11px;cursor:pointer;padding:4px;text-align:center;width:100%}
+.premix-table .dt-btn.set{color:var(--accent2)}
+.four-col{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:7px}
+
 /* COMING SOON */
 .coming-soon{text-align:center;padding:60px 20px;color:var(--text2);font-size:15px}
 .coming-soon .icon{font-size:46px;margin-bottom:12px}
@@ -227,6 +251,9 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
   <div class="app-header">
     <button class="back-btn" onclick="goto('screen-batch-choice')">‹</button>
     <div><div class="header-title">Select Batch</div><div class="header-sub">Tap to open</div></div>
+  </div>
+  <div class="search-wrap">
+    <input class="search-input" id="batch-search" placeholder="Search batch number or product…" oninput="filterBatchList(this.value)">
   </div>
   <div class="list-wrap" id="batch-list-body"></div>
 </div>
@@ -363,6 +390,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
     <div class="info-chip">Date: <span id="bi-date">—</span></div>
   </div>
   <div class="process-grid">
+    <div class="process-btn" onclick="goto('screen-premix')"><div class="process-btn-icon">🥣</div><div class="process-btn-label">Pre-Mix</div></div>
     <div class="process-btn" onclick="goto('screen-cb')"><div class="process-btn-icon">🔬</div><div class="process-btn-label">CB</div></div>
     <div class="process-btn" onclick="stageToast('Decant')"><div class="process-btn-icon">🧴</div><div class="process-btn-label">Decant</div></div>
     <div class="process-btn" onclick="stageToast('Tank Wash')"><div class="process-btn-icon">🚿</div><div class="process-btn-label">Tank Wash</div></div>
@@ -372,43 +400,165 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
   </div>
 </div>
 
-<!-- ══════════════ CB FORM ══════════════ -->
-<div class="screen" id="screen-cb">
+<!-- ══════════════ PRE-MIX ══════════════ -->
+<div class="screen" id="screen-premix">
   <div class="app-header">
     <button class="back-btn" onclick="goto('screen-batch-process')">‹</button>
-    <div><div class="header-title">CB Stage</div><div class="header-sub">Temperature & observations</div></div>
+    <div><div class="header-title">Pre-Mix</div><div class="header-sub">Ribbon blender data entry</div></div>
   </div>
   <div class="screen-body">
+
     <div class="form-section">
-      <div class="form-section-title">Temperature Readings</div>
+      <div class="form-section-title">Totals (Mandatory)</div>
       <div class="form-row">
         <div class="two-col">
           <div>
-            <div class="form-label">Start Temp</div>
-            <div class="input-suffix-wrap"><input type="number" class="form-input" id="cb-start" placeholder="000" max="999"><span class="input-suffix">°C</span></div>
+            <div class="form-label">Total P1</div>
+            <div class="input-suffix-wrap"><input type="number" class="form-input" id="pm-total-p1" placeholder="0.00" step="0.01"><span class="input-suffix">Kg</span></div>
           </div>
           <div>
-            <div class="form-label">End Temp</div>
-            <div class="input-suffix-wrap"><input type="number" class="form-input" id="cb-end" placeholder="000" max="999"><span class="input-suffix">°C</span></div>
-          </div>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="two-col">
-          <div>
-            <div class="form-label">Before Add L3 Temp</div>
-            <div class="input-suffix-wrap"><input type="number" class="form-input" id="cb-l3" placeholder="000" max="999"><span class="input-suffix">°C</span></div>
-          </div>
-          <div>
-            <div class="form-label">Before Unload Temp</div>
-            <div class="input-suffix-wrap"><input type="number" class="form-input" id="cb-unload" placeholder="000" max="999"><span class="input-suffix">°C</span></div>
+            <div class="form-label">Total L2</div>
+            <div class="input-suffix-wrap"><input type="number" class="form-input" id="pm-total-l2" placeholder="0.00" step="0.01"><span class="input-suffix">Kg</span></div>
           </div>
         </div>
       </div>
     </div>
+
+    <div class="form-section">
+      <div class="form-section-title">PRE-MIX — RIBBON BLENDER A</div>
+      <div class="form-row" style="overflow-x:auto;padding:10px 8px">
+        <table class="premix-table">
+          <thead><tr><th>Round</th><th>NFG</th><th>P1 (Kg)</th><th>L2 (Kg)</th><th>Date & Time</th></tr></thead>
+          <tbody id="pm-a-body">
+            <tr><td class="round-cell">1</td><td class="nfg-cell" id="pm-a-nfg-1">—</td><td><input type="number" class="cell-input" id="pm-a-p1-1" placeholder="0.00" step="0.01" oninput="calcPMTotal('a')"></td><td><input type="number" class="cell-input" id="pm-a-l2-1" placeholder="0.00" step="0.01" oninput="calcPMTotal('a')"></td><td class="dt-cell"><button class="dt-btn" id="pm-a-dt-1-btn" onclick="pickPMDateTime('a',1)">📅 Set</button><input type="hidden" id="pm-a-dt-1"></td></tr>
+            <tr><td class="round-cell">2</td><td class="nfg-cell" id="pm-a-nfg-2">—</td><td><input type="number" class="cell-input" id="pm-a-p1-2" placeholder="0.00" step="0.01" oninput="calcPMTotal('a')"></td><td><input type="number" class="cell-input" id="pm-a-l2-2" placeholder="0.00" step="0.01" oninput="calcPMTotal('a')"></td><td class="dt-cell"><button class="dt-btn" id="pm-a-dt-2-btn" onclick="pickPMDateTime('a',2)">📅 Set</button><input type="hidden" id="pm-a-dt-2"></td></tr>
+            <tr><td class="round-cell">3</td><td class="nfg-cell" id="pm-a-nfg-3">—</td><td><input type="number" class="cell-input" id="pm-a-p1-3" placeholder="0.00" step="0.01" oninput="calcPMTotal('a')"></td><td><input type="number" class="cell-input" id="pm-a-l2-3" placeholder="0.00" step="0.01" oninput="calcPMTotal('a')"></td><td class="dt-cell"><button class="dt-btn" id="pm-a-dt-3-btn" onclick="pickPMDateTime('a',3)">📅 Set</button><input type="hidden" id="pm-a-dt-3"></td></tr>
+          </tbody>
+          <tfoot><tr class="total-row"><td colspan="2">Total</td><td id="pm-a-total-p1">—</td><td id="pm-a-total-l2">—</td><td></td></tr></tfoot>
+        </table>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">PRE-MIX — RIBBON BLENDER B</div>
+      <div class="form-row" style="overflow-x:auto;padding:10px 8px">
+        <table class="premix-table">
+          <thead><tr><th>Round</th><th>NFG</th><th>P1 (Kg)</th><th>L2 (Kg)</th><th>Date & Time</th></tr></thead>
+          <tbody id="pm-b-body">
+            <tr><td class="round-cell">1</td><td class="nfg-cell" id="pm-b-nfg-1">—</td><td><input type="number" class="cell-input" id="pm-b-p1-1" placeholder="0.00" step="0.01" oninput="calcPMTotal('b')"></td><td><input type="number" class="cell-input" id="pm-b-l2-1" placeholder="0.00" step="0.01" oninput="calcPMTotal('b')"></td><td class="dt-cell"><button class="dt-btn" id="pm-b-dt-1-btn" onclick="pickPMDateTime('b',1)">📅 Set</button><input type="hidden" id="pm-b-dt-1"></td></tr>
+            <tr><td class="round-cell">2</td><td class="nfg-cell" id="pm-b-nfg-2">—</td><td><input type="number" class="cell-input" id="pm-b-p1-2" placeholder="0.00" step="0.01" oninput="calcPMTotal('b')"></td><td><input type="number" class="cell-input" id="pm-b-l2-2" placeholder="0.00" step="0.01" oninput="calcPMTotal('b')"></td><td class="dt-cell"><button class="dt-btn" id="pm-b-dt-2-btn" onclick="pickPMDateTime('b',2)">📅 Set</button><input type="hidden" id="pm-b-dt-2"></td></tr>
+            <tr><td class="round-cell">3</td><td class="nfg-cell" id="pm-b-nfg-3">—</td><td><input type="number" class="cell-input" id="pm-b-p1-3" placeholder="0.00" step="0.01" oninput="calcPMTotal('b')"></td><td><input type="number" class="cell-input" id="pm-b-l2-3" placeholder="0.00" step="0.01" oninput="calcPMTotal('b')"></td><td class="dt-cell"><button class="dt-btn" id="pm-b-dt-3-btn" onclick="pickPMDateTime('b',3)">📅 Set</button><input type="hidden" id="pm-b-dt-3"></td></tr>
+          </tbody>
+          <tfoot><tr class="total-row"><td colspan="2">Total</td><td id="pm-b-total-p1">—</td><td id="pm-b-total-l2">—</td><td></td></tr></tfoot>
+        </table>
+      </div>
+    </div>
+
+  </div>
+  <div class="bottom-bar">
+    <button class="btn-save" onclick="submitPremix(true)">Save</button>
+    <button class="btn-primary" onclick="submitPremix(false)">Submit ✓</button>
+  </div>
+</div>
+
+<!-- DATE TIME PICKER MODAL -->
+<div id="dt-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:600;align-items:flex-end;justify-content:center">
+  <div style="background:var(--surface);border-radius:var(--radius) var(--radius) 0 0;padding:20px 16px 32px;width:100%;max-width:480px">
+    <div style="font-size:14px;font-weight:600;color:var(--text2);margin-bottom:14px" id="dt-modal-title">Set Date & Time</div>
+    <div class="two-col" style="margin-bottom:16px">
+      <div><div class="form-label">Date</div><input type="date" class="form-input" id="dt-modal-date"></div>
+      <div><div class="form-label">Time</div><input type="time" class="form-input" id="dt-modal-time"></div>
+    </div>
+    <div style="display:flex;gap:10px">
+      <button class="btn-save" style="flex:1" onclick="closeDTModal()">Cancel</button>
+      <button class="btn-primary" onclick="confirmDTModal()">Set ✓</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ CB FORM ══════════════ -->
+<div class="screen" id="screen-cb">
+  <div class="app-header">
+    <button class="back-btn" onclick="goto('screen-batch-process')">‹</button>
+    <div><div class="header-title">CB Stage</div><div class="header-sub">Quantities, temps & times</div></div>
+  </div>
+  <div class="screen-body">
+
+    <div class="form-section">
+      <div class="form-section-title">Quantities</div>
+      <div class="form-row">
+        <div class="two-col">
+          <div>
+            <div class="form-label">L1 Quantity</div>
+            <div class="input-suffix-wrap"><input type="number" class="form-input" id="cb-l1-qty" placeholder="0.00" step="0.01"><span class="input-suffix">Kg</span></div>
+          </div>
+          <div>
+            <div class="form-label">L3 Quantity</div>
+            <div class="input-suffix-wrap"><input type="number" class="form-input" id="cb-l3-qty" placeholder="0.00" step="0.01"><span class="input-suffix">Kg</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">Time & Temperature</div>
+      <div class="form-row">
+        <div class="two-col">
+          <div>
+            <div class="form-label">Start Time</div>
+            <button class="time-pick-btn" id="cb-start-time-btn" onclick="pickTime('cb-start-time')">⏱ Tap to set</button>
+            <input type="hidden" id="cb-start-time">
+          </div>
+          <div>
+            <div class="form-label">Start Temp</div>
+            <div class="input-suffix-wrap"><input type="number" class="form-input" id="cb-start-temp" placeholder="000" max="999"><span class="input-suffix">°C</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="two-col">
+          <div>
+            <div class="form-label">End Time</div>
+            <button class="time-pick-btn" id="cb-end-time-btn" onclick="pickTime('cb-end-time')">⏱ Tap to set</button>
+            <input type="hidden" id="cb-end-time">
+          </div>
+          <div>
+            <div class="form-label">End Temp</div>
+            <div class="input-suffix-wrap"><input type="number" class="form-input" id="cb-end-temp" placeholder="000" max="999"><span class="input-suffix">°C</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="two-col">
+          <div>
+            <div class="form-label">L3 Add Time</div>
+            <button class="time-pick-btn" id="cb-l3-time-btn" onclick="pickTime('cb-l3-time')">⏱ Tap to set</button>
+            <input type="hidden" id="cb-l3-time">
+          </div>
+          <div>
+            <div class="form-label">L3 Add Temp</div>
+            <div class="input-suffix-wrap"><input type="number" class="form-input" id="cb-l3-temp" placeholder="000" max="999"><span class="input-suffix">°C</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="two-col">
+          <div>
+            <div class="form-label">Unload Time</div>
+            <button class="time-pick-btn" id="cb-unload-time-btn" onclick="pickTime('cb-unload-time')">⏱ Tap to set</button>
+            <input type="hidden" id="cb-unload-time">
+          </div>
+          <div>
+            <div class="form-label">Unload Temp</div>
+            <div class="input-suffix-wrap"><input type="number" class="form-input" id="cb-unload-temp" placeholder="000" max="999"><span class="input-suffix">°C</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="form-section">
       <div class="form-section-title">Observations</div>
-      <div class="form-row"><textarea class="form-textarea" id="cb-obs" rows="4" placeholder="No. of trips / halts, during addition / during soak etc."></textarea></div>
+      <div class="form-row"><textarea class="form-textarea" id="cb-obs" rows="3" placeholder="No. of trips / halts, during addition / during soak etc."></textarea></div>
     </div>
     <div class="form-section">
       <div class="form-section-title">Expansion at CB Stage</div>
@@ -765,6 +915,7 @@ function goto(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   window.scrollTo(0,0);
+  if(id==='screen-premix') setTimeout(fillPremixNFG,50);
 }
 
 // ══════════════════════════════════════════
@@ -976,30 +1127,50 @@ async function submitBatch(){
 // ══════════════════════════════════════════
 // LOAD BATCH LIST
 // ══════════════════════════════════════════
+let allBatches=[];
+function fmtDate(d){
+  if(!d) return '—';
+  // handle YYYY-MM-DD or ISO string
+  const s=String(d).split('T')[0];
+  const parts=s.split('-');
+  if(parts.length===3) return parts[2]+'-'+parts[1]+'-'+parts[0].slice(2);
+  return d;
+}
 async function loadBatchList(){
   showLoading(true);
   try{
     const r=await apiGet('getBatches');
     showLoading(false);
-    const body=document.getElementById('batch-list-body');
-    const rows=r.data||[];
-    if(rows.length===0){
-      body.innerHTML='<div class="list-empty"><div class="icon">🧪</div>No batches found.<br>Create a new batch first.</div>';
-    } else {
-      body.innerHTML='';
-      rows.forEach(b=>{
-        const el=document.createElement('div');
-        el.className='list-item';
-        el.innerHTML=`<div class="list-item-title">${b.batchNumber}</div><div class="list-item-sub">${b.product} &nbsp;·&nbsp; ${b.date} &nbsp;·&nbsp; ${b.cb}</div>`;
-        el.onclick=()=>openExistingBatch(b);
-        body.appendChild(el);
-      });
-    }
+    allBatches=r.data||[];
+    renderBatchList(allBatches);
     goto('screen-batch-list');
   } catch(e){
     showLoading(false);
     showToast('Failed to load: '+e.message,'error');
   }
+}
+function renderBatchList(rows){
+  const body=document.getElementById('batch-list-body');
+  if(rows.length===0){
+    body.innerHTML='<div class="list-empty"><div class="icon">🧪</div>No batches found.</div>';
+    return;
+  }
+  body.innerHTML='';
+  rows.forEach(b=>{
+    const el=document.createElement('div');
+    el.className='list-item';
+    el.innerHTML=`<div class="list-item-title">${b.batchNumber}</div><div class="list-item-sub">${b.product} &nbsp;·&nbsp; ${fmtDate(b.date)} &nbsp;·&nbsp; ${b.cb}</div>`;
+    el.onclick=()=>openExistingBatch(b);
+    body.appendChild(el);
+  });
+}
+function filterBatchList(q){
+  if(!q.trim()){renderBatchList(allBatches);return;}
+  const lq=q.toLowerCase();
+  renderBatchList(allBatches.filter(b=>
+    String(b.batchNumber).toLowerCase().includes(lq)||
+    String(b.product).toLowerCase().includes(lq)
+  ));
 }
 
 function openExistingBatch(b){
@@ -1014,14 +1185,16 @@ function openExistingBatch(b){
 // CB SUBMIT
 // ══════════════════════════════════════════
 async function submitCB(saveOnly){
+  const g=id=>document.getElementById(id)?.value||'';
   const data={
     batchNumber:currentBatch.batchNumber||'—', stage:'CB',
-    startTemp:document.getElementById('cb-start').value,
-    endTemp:document.getElementById('cb-end').value,
-    l3Temp:document.getElementById('cb-l3').value,
-    unloadTemp:document.getElementById('cb-unload').value,
-    obs:document.getElementById('cb-obs').value.trim(),
-    expansion:document.getElementById('cb-expansion').value,
+    l1Qty:g('cb-l1-qty'), l3Qty:g('cb-l3-qty'),
+    startTime:g('cb-start-time'), startTemp:g('cb-start-temp'),
+    endTime:g('cb-end-time'), endTemp:g('cb-end-temp'),
+    l3AddTime:g('cb-l3-time'), l3AddTemp:g('cb-l3-temp'),
+    unloadTime:g('cb-unload-time'), unloadTemp:g('cb-unload-temp'),
+    obs:g('cb-obs').trim(),
+    expansion:g('cb-expansion'),
     draft:saveOnly?'yes':'no'
   };
   showLoading(true);
@@ -1029,6 +1202,127 @@ async function submitCB(saveOnly){
     await api({sheet:'BATCH_PROCESS',action:'append',data});
     showLoading(false);
     showToast(saveOnly?'Saved ✓':'CB submitted ✓','success');
+    if(!saveOnly) goto('screen-batch-process');
+  } catch(e){
+    showLoading(false);
+    showToast('Save failed: '+e.message,'error');
+  }
+}
+
+// ══════════════════════════════════════════
+// TIME PICKER
+// ══════════════════════════════════════════
+function pickTime(fieldId){
+  const modal=document.createElement('div');
+  modal.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:700;display:flex;align-items:flex-end;justify-content:center';
+  const now=new Date();
+  const hh=String(now.getHours()).padStart(2,'0');
+  const mm=String(now.getMinutes()).padStart(2,'0');
+  modal.innerHTML=`
+    <div style="background:var(--surface);border-radius:14px 14px 0 0;padding:20px 16px 32px;width:100%;max-width:480px">
+      <div style="font-size:14px;font-weight:600;color:var(--text2);margin-bottom:14px">Set Time</div>
+      <input type="time" class="form-input" id="tmp-time-input" value="${hh}:${mm}" style="margin-bottom:16px">
+      <div style="display:flex;gap:10px">
+        <button class="btn-save" style="flex:1" onclick="this.closest('div[style]').remove()">Cancel</button>
+        <button class="btn-primary" onclick="
+          const v=document.getElementById('tmp-time-input').value;
+          document.getElementById('${fieldId}').value=v;
+          const btn=document.getElementById('${fieldId}-btn');
+          if(btn){btn.textContent='⏱ '+v;btn.classList.add('set');}
+          this.closest('div[style]').remove();
+        ">Set ✓</button>
+      </div>
+    </div>`;
+  document.body.appendChild(modal);
+}
+
+// ══════════════════════════════════════════
+// PREMIX DATE-TIME MODAL
+// ══════════════════════════════════════════
+let dtModalTarget={blender:'',round:0};
+function pickPMDateTime(blender,round){
+  dtModalTarget={blender,round};
+  const modal=document.getElementById('dt-modal');
+  const today=new Date().toISOString().split('T')[0];
+  const now=new Date();
+  document.getElementById('dt-modal-date').value=today;
+  document.getElementById('dt-modal-time').value=String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');
+  document.getElementById('dt-modal-title').textContent='Blender '+blender.toUpperCase()+' — Round '+round;
+  modal.style.display='flex';
+}
+function closeDTModal(){document.getElementById('dt-modal').style.display='none';}
+function confirmDTModal(){
+  const d=document.getElementById('dt-modal-date').value;
+  const t=document.getElementById('dt-modal-time').value;
+  const {blender,round}=dtModalTarget;
+  const val=fmtDate(d)+' '+t;
+  document.getElementById('pm-'+blender+'-dt-'+round).value=val;
+  const btn=document.getElementById('pm-'+blender+'-dt-'+round+'-btn');
+  if(btn){btn.textContent='📅 '+val;btn.classList.add('set');}
+  closeDTModal();
+}
+
+// ══════════════════════════════════════════
+// PREMIX CALCULATIONS
+// ══════════════════════════════════════════
+function calcPMTotal(blender){
+  let tp1=0,tl2=0;
+  for(let i=1;i<=3;i++){
+    const p1=parseFloat(document.getElementById('pm-'+blender+'-p1-'+i)?.value)||0;
+    const l2=parseFloat(document.getElementById('pm-'+blender+'-l2-'+i)?.value)||0;
+    tp1+=p1; tl2+=l2;
+  }
+  document.getElementById('pm-'+blender+'-total-p1').textContent=tp1>0?tp1.toFixed(2):'—';
+  document.getElementById('pm-'+blender+'-total-l2').textContent=tl2>0?tl2.toFixed(2):'—';
+}
+
+// ══════════════════════════════════════════
+// PREMIX NFG CODE FILL
+// ══════════════════════════════════════════
+function fillPremixNFG(){
+  const code=currentBatch.nfgCode||'—';
+  ['a','b'].forEach(bl=>{
+    for(let i=1;i<=3;i++){
+      const el=document.getElementById('pm-'+bl+'-nfg-'+i);
+      if(el) el.textContent=code;
+    }
+  });
+}
+
+// ══════════════════════════════════════════
+// SUBMIT PREMIX
+// ══════════════════════════════════════════
+async function submitPremix(saveOnly){
+  const tp1=document.getElementById('pm-total-p1').value;
+  const tl2=document.getElementById('pm-total-l2').value;
+  if(!tp1||!tl2){
+    if(!tp1) hl('pm-total-p1');
+    if(!tl2) hl('pm-total-l2');
+    showToast('Total P1 and Total L2 are required','error');
+    return;
+  }
+  const g=id=>document.getElementById(id)?.value||'';
+  const rows=[];
+  ['a','b'].forEach(bl=>{
+    for(let i=1;i<=3;i++){
+      rows.push({
+        batchNumber:currentBatch.batchNumber||'—',
+        blender:'Blender '+bl.toUpperCase(),
+        round:i,
+        nfgCode:currentBatch.nfgCode||'—',
+        p1:g('pm-'+bl+'-p1-'+i),
+        l2:g('pm-'+bl+'-l2-'+i),
+        dateTime:g('pm-'+bl+'-dt-'+i),
+        totalP1:tp1, totalL2:tl2,
+        draft:saveOnly?'yes':'no'
+      });
+    }
+  });
+  showLoading(true);
+  try{
+    await api({sheet:'PREMIX',action:'appendBatch',data:rows});
+    showLoading(false);
+    showToast(saveOnly?'Saved ✓':'Pre-Mix submitted ✓','success');
     if(!saveOnly) goto('screen-batch-process');
   } catch(e){
     showLoading(false);
